@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using MacrosTracker.WebAPI.Providers;
 using MacrosTracker.WebAPI.Models;
+using MacrosTracker.Data;
 
 namespace MacrosTracker.WebAPI
 {

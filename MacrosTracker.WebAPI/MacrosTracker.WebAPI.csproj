@@ -213,7 +213,6 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -306,6 +305,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MacrosTracker.Data\MacrosTracker.Data.csproj">
+      <Project>{d7fec447-9ad5-472d-be77-160876365224}</Project>
+      <Name>MacrosTracker.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MacrosTracker.Models\MacrosTracker.Models.csproj">
+      <Project>{bc63d59a-8c3f-41f3-8181-02ce0bfa854e}</Project>
+      <Name>MacrosTracker.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MacrosTracker.Services\MacrosTracker.Services.csproj">
+      <Project>{960995e5-eb56-4289-b1dd-2ef41a53203a}</Project>
+      <Name>MacrosTracker.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
