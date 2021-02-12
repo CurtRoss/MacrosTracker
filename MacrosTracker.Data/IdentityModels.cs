@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
@@ -17,8 +19,35 @@ namespace MacrosTracker.Data
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
             // Add custom user claims here
+
             return userIdentity;
         }
+        [Required]
+        public int HeightInInches { get; set; }
+        [Required]
+        public int Weight { get; set; }
+        [Required]
+        public string MaleOrFemale { get; set; }
+        [Required]
+        public int Age { get; set; }
+        
+        public int DailyCalorieGoalToLoseWeight
+        {
+            get
+            {
+                if (MaleOrFemale.ToLower() == "male")
+                {
+                    var maleGoal = 10 * (Weight / 2.3) + (6.25 * (HeightInInches * 2.54)) - (5 * Age) + 5;
+                    return (int)maleGoal;
+                }
+                var femaleGoal = (10 * (Weight / 2.3)) + (6.25 * (HeightInInches * 2.54)) - (5 * Age) - 161;
+                return (int)femaleGoal;
+            }
+        }
+        //public List<Recipe> MyRecipes { get; set; }
+        //public List<Food> UsersFoods { get; set; }
+        //public List<DailyMeal> UsersMeals { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -33,7 +62,7 @@ namespace MacrosTracker.Data
             return new ApplicationDbContext();
         }
 
-        //public DbSet<FoodItem> FoodItems { get; set; }
+        public DbSet<FoodItem> FoodItems { get; set; }
         //public DbSet<DailyMeal> DailyMeals { get; set; }
         //public DbSet<Day> Days { get; set; }
 

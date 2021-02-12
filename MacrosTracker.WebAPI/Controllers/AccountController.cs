@@ -329,7 +329,8 @@ namespace MacrosTracker.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,
+            Age = model.Age, HeightInInches = model.HeightInInches, MaleOrFemale = model.MaleOrFemale, Weight = model.Weight};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

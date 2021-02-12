@@ -48,6 +48,19 @@ namespace MacrosTracker.WebAPI.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Height in Inches")]
+        public int HeightInInches { get; set; }
+        [Required]
+        [Display(Name = "Weight")]
+        public int Weight { get; set; }
+        [Required]
+        [Display(Name = "Male or Female?")]
+        public string MaleOrFemale { get; set; }
+        [Required]
+        [Display(Name = "Age")]
+        public int Age { get; set; }
     }
 
     public class RegisterExternalBindingModel
