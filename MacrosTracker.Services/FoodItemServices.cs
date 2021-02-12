@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MacrosTracker.Models
+namespace MacrosTracker.Services
 {
-    public class Class1
+    public class FoodItemServices
     {
     }
 }
