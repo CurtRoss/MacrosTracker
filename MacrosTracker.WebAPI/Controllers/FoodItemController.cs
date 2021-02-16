@@ -16,13 +16,13 @@ namespace MacrosTracker.WebAPI.Controllers
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var foodItem = new FoodItemServices(userId);
-            return FoodItemServices;
+            return foodItem;
         }
 
         public IHttpActionResult Get()
         {
             FoodItemServices foodItemServices = CreateFoodItemServices();
-            var foodItem = foodItemService.GetFoodItem();
+            var foodItem = foodItemServices.GetFoodItem();
             return Ok(foodItem);
         }
 

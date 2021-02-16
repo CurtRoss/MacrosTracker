@@ -10,11 +10,11 @@ namespace MacrosTracker.Services
 {
     public class FoodItemServices
     {
-        private readonly Guid foodId;
+        private readonly Guid _userId;
 
         public FoodItemServices(Guid userId)
         {
-            foodId = userId;
+            _userId = userId;
         }
 
         public bool CreateFoodItem(FoodItemCreate model)
@@ -22,7 +22,7 @@ namespace MacrosTracker.Services
             var entity =
                  new FoodItem()
                  {
-                     FoodId= foodId,
+                     FoodId= model.FoodId,
 
                      FoodName = model.FoodName,
                      CreatedUtc = DateTimeOffset.Now
@@ -30,28 +30,28 @@ namespace MacrosTracker.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                var post = ctx.Posts.Find(entity.PostId);
-                post.ListOfFoodItem.Add(entity);
-                ctx.FoodItem.Add(entity);
+                var foodItem = ctx.FoodItems.Find(entity.FoodId);
+                //User.ListOfFoodItems.Add(entity);
+                ctx.FoodItems.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public IEnumerable<FoodItemListItem> GetComments()
+        public IEnumerable<FoodItemListItem> GetFoodItem()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                    ctx
-                       .FoodItem
-                       .Where(e => e.OwnerId == foodId)
+                       .FoodItems
+                       .Where(e => e.UserId == _userId)
                        .Select(
                            e =>
                                new FoodItemListItem
                                {
                                    FoodId = e.FoodId,
                                    FoodName = e.FoodName,
-                                   CreatedUtc = e.CreateUtc,
+                                   CreatedUtc = e.CreatedUtc,
                                    ModifiedUtc = e.ModifiedUtc,
                                }
                    );
@@ -59,14 +59,14 @@ namespace MacrosTracker.Services
             }
         }
 
-        public FoodItemDetail GetCommentById(int id)
+        public FoodItemDetail GetFoodItemById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .FoodItem
-                        .Single(e => e.Id == id && e.OwnerId == foodId);
+                        .FoodItems
+                        .Single(e => e.FoodId == id && e.UserId == _userId);
                 return
                     new FoodItemDetail
                     {
@@ -74,7 +74,7 @@ namespace MacrosTracker.Services
                         FoodName = entity.FoodName,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc,
-                        ListOfMeals = entity.ListOfMeals
+                        //ListOfMeals = entity.ListOfMeals
                     };
             }
 
@@ -87,8 +87,8 @@ namespace MacrosTracker.Services
             {
                 var entity =
                     ctx
-                        .FoodItem
-                        .Single(e => e.FoodId == model.FoodId && e.OwnerId == foodId);
+                        .FoodItems
+                        .Single(e => e.FoodId == model.FoodId && e.UserId == _userId);
 
                 entity.FoodName = model.FoodName;
                 entity.FoodId = model.FoodId;
@@ -104,10 +104,10 @@ namespace MacrosTracker.Services
             {
                 var entity =
                     ctx
-                        .FoodItem
-                        .Single(e => e.Id == Id && e.OwnerId == foodId);
+                        .FoodItems
+                        .Single(e => e.FoodId == Id && e.UserId == _userId);
 
-                ctx.FoodItem.Remove(entity);
+                ctx.FoodItems.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }

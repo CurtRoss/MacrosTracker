@@ -23,7 +23,7 @@ namespace MacrosTracker.Data
         public double Fat { get; set; }
         public double Carbs { get; set; }
         public double Calories { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         //public virtual List<Meal> ListOfMeals { get; set; } = new List<Meal>();
 
         [Required]
