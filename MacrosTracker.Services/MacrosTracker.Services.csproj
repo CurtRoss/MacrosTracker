@@ -61,5 +61,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MacrosTracker.Data\MacrosTracker.Data.csproj">
+      <Project>{d7fec447-9ad5-472d-be77-160876365224}</Project>
+      <Name>MacrosTracker.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MacrosTracker.Models\MacrosTracker.Models.csproj">
+      <Project>{bc63d59a-8c3f-41f3-8181-02ce0bfa854e}</Project>
+      <Name>MacrosTracker.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

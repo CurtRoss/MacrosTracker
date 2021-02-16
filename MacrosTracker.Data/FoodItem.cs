@@ -24,7 +24,7 @@ namespace MacrosTracker.Data
         public double Carbs { get; set; }
         public double Calories { get; set; }
         public int UserId { get; set; }
-        public virtual List<FoodItem> ListOfFoodItems { get; set; } = new List<FoodItem>();
+        //public virtual List<Meal> ListOfMeals { get; set; } = new List<Meal>();
 
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }

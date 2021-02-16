@@ -12,7 +12,7 @@ namespace MacrosTracker.Models
         [Required, MinLength(2, ErrorMessage = "Please enter at least two characters.")]
         [MaxLength(100, ErrorMessage = "There are too many characters in this field.")]
         public string FoodName { get; set; }
-        public int MealId { get; set; }
+        public int FoodId { get; set; }
 
 
     }

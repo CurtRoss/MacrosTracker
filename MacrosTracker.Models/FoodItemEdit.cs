@@ -8,5 +8,7 @@ namespace MacrosTracker.Models
 {
     public class FoodItemEdit
     {
+        public int FoodId { get; set; }
+        public string FoodName { get; set; }
     }
 }
