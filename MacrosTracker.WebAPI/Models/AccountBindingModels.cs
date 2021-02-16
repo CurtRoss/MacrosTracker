@@ -59,8 +59,8 @@ namespace MacrosTracker.WebAPI.Models
         [Display(Name = "Male or Female?")]
         public string MaleOrFemale { get; set; }
         [Required]
-        [Display(Name = "Age")]
-        public int Age { get; set; }
+        [Display(Name = "Date of Birth")]
+        public DateTime DateOfBirth { get; set; }
     }
 
     public class RegisterExternalBindingModel

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
@@ -29,7 +30,17 @@ namespace MacrosTracker.Data
         [Required]
         public string MaleOrFemale { get; set; }
         [Required]
-        public int Age { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        [Required]
+        public int Age
+        {
+            get
+            {
+                var age = DateTime.Now - DateOfBirth;
+                var ageadj = age.Days / 365;
+                return ageadj;
+            }
+        }
         
         public int DailyCalorieGoalToLoseWeight
         {

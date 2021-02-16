@@ -59,11 +59,18 @@ namespace MacrosTracker.WebAPI.Controllers
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
+            
+            ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
+
             return new UserInfoViewModel
             {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null,
+                Age = user.Age,
+                Weight = user.Weight,
+                Height = user.HeightInInches,
+                MaleOrFemale = user.MaleOrFemale
             };
         }
 
@@ -330,7 +337,7 @@ namespace MacrosTracker.WebAPI.Controllers
             }
 
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,
-            Age = model.Age, HeightInInches = model.HeightInInches, MaleOrFemale = model.MaleOrFemale, Weight = model.Weight};
+            DateOfBirth = model.DateOfBirth, HeightInInches = model.HeightInInches, MaleOrFemale = model.MaleOrFemale, Weight = model.Weight};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
