@@ -99,5 +99,20 @@ namespace MacrosTracker.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeleteMeal(int mealId)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .DailyMeals
+                        .Single(e => e.MealId == mealId && e.UserId == _userId);
+
+                ctx.DailyMeals.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

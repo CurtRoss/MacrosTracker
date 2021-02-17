@@ -58,5 +58,16 @@ namespace MacrosTracker.WebAPI.Controllers
 
             return Ok();
         }
+
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateMealService();
+
+            if (!service.DeleteMeal(id))
+                return InternalServerError();
+
+            return Ok();
+
+        }
     }
 }
