@@ -42,6 +42,16 @@ namespace MacrosTracker.WebAPI.Models
         //public List<Meal> MyMeals { get; set; }
     }
 
+    public class UserUpdateModel
+    {
+        public string Email { get; set; }
+        public int Weight { get; set; }
+        public int Height { get; set; }
+        public string MaleOrFemale { get; set; }
+        public DateTime DateOfBirth { get; set; }
+
+    }
+
     public class UserLoginInfoViewModel
     {
         public string LoginProvider { get; set; }
