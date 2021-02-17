@@ -26,7 +26,7 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(meals);
         }
 
-        public IHttpActionResult Post (MealCreate meal)
+        public IHttpActionResult Post(MealCreate meal)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -34,6 +34,26 @@ namespace MacrosTracker.WebAPI.Controllers
             var service = CreateMealService();
 
             if (!service.CreateMeal(meal))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        public IHttpActionResult Get(int id)
+        {
+            MealService mealService = CreateMealService();
+            var meal = mealService.GetMealById(id);
+            return Ok(meal);
+        }
+
+        public IHttpActionResult Put(MealEdit meal)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateMealService();
+
+            if (!service.UpdateMeal(meal))
                 return InternalServerError();
 
             return Ok();

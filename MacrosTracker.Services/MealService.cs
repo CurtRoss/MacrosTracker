@@ -54,5 +54,50 @@ namespace MacrosTracker.Services
                 return query.ToArray();
             }
         }
+
+        public MealDetail GetMealById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .DailyMeals
+                        .Single(e => e.MealId == id && e.UserId == _userId);
+                return
+                    new MealDetail
+                    {
+                        MealId = entity.MealId,
+                        MealName = entity.MealName,
+                        Category = entity.Category,
+                        Protein = entity.Protein,
+                        Fat = entity.Fat,
+                        Carbs = entity.Carbs,
+                        Calories = entity.Calories,
+                        CreatedUtc = entity.CreatedUtc,
+                        ModifiedUtc = entity.ModifiedUtc
+                    };
+            }
+        }
+
+        public bool UpdateMeal(MealEdit model)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .DailyMeals
+                        .Single(e => e.MealId == model.MealId && e.UserId == _userId);
+
+                entity.MealName = model.MealName;
+                entity.Category = model.Category;
+                entity.Carbs = model.Carbs;
+                entity.Fat = model.Fat;
+                entity.Protein = model.Protein;
+                entity.Calories = model.Calories;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

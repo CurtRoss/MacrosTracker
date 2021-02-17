@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="MealDetail.cs" />
     <Compile Include="MealListItem.cs" />
     <Compile Include="MealCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
