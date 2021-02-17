@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace MacrosTracker.WebAPI.Controllers
 {
+    [Authorize]
     public class MealController : ApiController
     {
         public MealService CreateMealService()
@@ -19,6 +20,8 @@ namespace MacrosTracker.WebAPI.Controllers
             return mealService;
         }
 
+        [HttpGet]
+        [Route("api/GetMeal")]
         public IHttpActionResult Get()
         {
             MealService mealService = CreateMealService();
@@ -26,6 +29,8 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(meals);
         }
 
+        [HttpPost]
+        [Route("api/Meal")]
         public IHttpActionResult Post(MealCreate meal)
         {
             if (!ModelState.IsValid)
@@ -38,7 +43,8 @@ namespace MacrosTracker.WebAPI.Controllers
 
             return Ok();
         }
-
+        
+        [HttpGet]
         public IHttpActionResult Get(int id)
         {
             MealService mealService = CreateMealService();

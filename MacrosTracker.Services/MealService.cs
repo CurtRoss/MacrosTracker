@@ -90,10 +90,10 @@ namespace MacrosTracker.Services
 
                 entity.MealName = model.MealName;
                 entity.Category = model.Category;
-                entity.Carbs = model.Carbs;
-                entity.Fat = model.Fat;
-                entity.Protein = model.Protein;
-                entity.Calories = model.Calories;
+                //entity.Carbs = model.Carbs;
+                //entity.Fat = model.Fat;
+                //entity.Protein = model.Protein;
+                //entity.Calories = model.Calories;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
