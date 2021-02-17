@@ -32,7 +32,7 @@ namespace MacrosTracker.WebAPI.Models
         public bool HasRegistered { get; set; }
 
         public string LoginProvider { get; set; }
-        public int Weight { get; set; }
+        public double Weight { get; set; }
         public int Height { get; set; }
         public int Age { get; set; }
         public string MaleOrFemale { get; set; }
@@ -45,7 +45,7 @@ namespace MacrosTracker.WebAPI.Models
     public class UserUpdateModel
     {
         public string Email { get; set; }
-        public int Weight { get; set; }
+        public double Weight { get; set; }
         public int Height { get; set; }
         public string MaleOrFemale { get; set; }
         public DateTime DateOfBirth { get; set; }

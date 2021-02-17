@@ -94,6 +94,14 @@
     <Compile Include="Migrations\202102161813582_AddPropertiesToApplicationUser.Designer.cs">
       <DependentUpon>202102161813582_AddPropertiesToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102170043227_add-migration UpdateHeight.cs" />
+    <Compile Include="Migrations\202102170043227_add-migration UpdateHeight.Designer.cs">
+      <DependentUpon>202102170043227_add-migration UpdateHeight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102170058504_FiguringStuffout.cs" />
+    <Compile Include="Migrations\202102170058504_FiguringStuffout.Designer.cs">
+      <DependentUpon>202102170058504_FiguringStuffout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -107,6 +115,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102161813582_AddPropertiesToApplicationUser.resx">
       <DependentUpon>202102161813582_AddPropertiesToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102170043227_add-migration UpdateHeight.resx">
+      <DependentUpon>202102170043227_add-migration UpdateHeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102170058504_FiguringStuffout.resx">
+      <DependentUpon>202102170058504_FiguringStuffout.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

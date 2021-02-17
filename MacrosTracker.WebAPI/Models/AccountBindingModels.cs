@@ -54,7 +54,7 @@ namespace MacrosTracker.WebAPI.Models
         public int HeightInInches { get; set; }
         [Required]
         [Display(Name = "Weight")]
-        public int Weight { get; set; }
+        public double Weight { get; set; }
         [Required]
         [Display(Name = "Male or Female?")]
         public string MaleOrFemale { get; set; }

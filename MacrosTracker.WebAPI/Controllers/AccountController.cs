@@ -71,7 +71,7 @@ namespace MacrosTracker.WebAPI.Controllers
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null,
                 Age = user.Age,
                 Weight = user.Weight,
-                Height = user.HeightInInches,
+                Height = user.Height,
                 MaleOrFemale = user.MaleOrFemale
             };
         }
@@ -165,16 +165,13 @@ namespace MacrosTracker.WebAPI.Controllers
 
                 entity.Email = model.Email;
                 entity.DateOfBirth = model.DateOfBirth;
-                entity.HeightInInches = model.Height;
+                entity.Height = model.Height;
                 entity.Weight = model.Weight;
                 entity.MaleOrFemale = model.MaleOrFemale;
 
                 await ctx.SaveChangesAsync();
                 return Ok("User Updated");
             }
-            //return Ok(user);
-
-
         }
 
         // POST api/Account/SetPassword
@@ -376,7 +373,7 @@ namespace MacrosTracker.WebAPI.Controllers
                 UserName = model.Email,
                 Email = model.Email,
                 DateOfBirth = model.DateOfBirth,
-                HeightInInches = model.HeightInInches,
+                Height = model.HeightInInches,
                 MaleOrFemale = model.MaleOrFemale,
                 Weight = model.Weight
             };

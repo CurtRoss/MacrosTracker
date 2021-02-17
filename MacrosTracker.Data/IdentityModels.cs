@@ -24,14 +24,13 @@ namespace MacrosTracker.Data
             return userIdentity;
         }
         [Required]
-        public int HeightInInches { get; set; }
+        public int Height { get; set; }
         [Required]
-        public int Weight { get; set; }
+        public double Weight { get; set; }
         [Required]
         public string MaleOrFemale { get; set; }
         [Required]
         public DateTime DateOfBirth { get; set; }
-        [Required]
         public int Age
         {
             get
@@ -48,10 +47,10 @@ namespace MacrosTracker.Data
             {
                 if (MaleOrFemale.ToLower() == "male")
                 {
-                    var maleGoal = 10 * (Weight / 2.3) + (6.25 * (HeightInInches * 2.54)) - (5 * Age) + 5;
+                    var maleGoal = 10 * (Weight / 2.3) + (6.25 * (Height * 2.54)) - (5 * Age) + 5;
                     return (int)maleGoal;
                 }
-                var femaleGoal = (10 * (Weight / 2.3)) + (6.25 * (HeightInInches * 2.54)) - (5 * Age) - 161;
+                var femaleGoal = (10 * (Weight / 2.3)) + (6.25 * (Height * 2.54)) - (5 * Age) - 161;
                 return (int)femaleGoal;
             }
         }
