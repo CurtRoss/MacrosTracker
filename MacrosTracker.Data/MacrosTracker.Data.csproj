@@ -85,8 +85,10 @@
   </ItemGroup>
   <ItemGroup>
 
+
     <Compile Include="FoodItem.cs" />
     <Compile Include="Meal.cs" />
+
 
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202102120128589_InitialCreate.cs" />

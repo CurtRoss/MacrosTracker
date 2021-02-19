@@ -5,32 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MacrosTracker.Data
+namespace MacrosTracker.Models
 {
-    public class FoodItem
+    public class FoodItemCreate
     {
-
-        [Key]
-        public int FoodId { get; set; }
-
-
-       
-
-        [Required]
-        public int MealId { get; set; }
+        [Required, MinLength(2, ErrorMessage = "Please enter at least two characters.")]
+        [MaxLength(100, ErrorMessage = "There are too many characters in this field.")]
         public string FoodName { get; set; }
+        public int FoodId { get; set; }
         public decimal Amount { get; set; }
         public double Protein { get; set; }
         public double Fat { get; set; }
         public double Carbs { get; set; }
         public double Calories { get; set; }
-        public Guid UserId { get; set; }
-        //public virtual List<Meal> ListOfMeals { get; set; } = new List<Meal>();
 
-        [Required]
-        public DateTimeOffset CreatedUtc { get; set; }
-
-        public DateTimeOffset? ModifiedUtc { get; set; }
 
     }
 }
