@@ -22,7 +22,7 @@ namespace MacrosTracker.Services
             var entity =
                  new FoodItem()
                  {
-                     FoodId= model.FoodId,
+                     
                      UserId = _userId,
                      Amount = model.Amount,
                      FoodName = model.FoodName,
@@ -35,7 +35,7 @@ namespace MacrosTracker.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                var foodItem = ctx.FoodItems.Find(entity.FoodId);
+                //var foodItem = ctx.FoodItems.Find(entity.FoodId);
                 //User.ListOfFoodItems.Add(entity);
                 ctx.FoodItems.Add(entity);
                 return ctx.SaveChanges() == 1;
