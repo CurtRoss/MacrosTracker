@@ -72,8 +72,10 @@ namespace MacrosTracker.Data
             return new ApplicationDbContext();
         }
 
+
         public DbSet<FoodItem> FoodItems { get; set; }
-        //public DbSet<DailyMeal> DailyMeals { get; set; }
+        public DbSet<Meal> DailyMeals { get; set; }
+
         //public DbSet<Day> Days { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
