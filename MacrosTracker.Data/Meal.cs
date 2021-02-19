@@ -13,9 +13,9 @@ namespace MacrosTracker.Data
         [Key]
         public int MealId { get; set; }
 
-        [ForeignKey(nameof(FoodItem))]
-        public int FoodId { get; set; }
-        public virtual FoodItem FoodItem { get; set; }
+        //[ForeignKey(nameof(FoodItem))]
+        //public int FoodId { get; set; }
+        //public virtual FoodItem FoodItem { get; set; }
 
         [Required]
         public Guid UserId { get; set; }

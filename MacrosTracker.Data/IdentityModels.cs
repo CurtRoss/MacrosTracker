@@ -97,10 +97,10 @@ namespace MacrosTracker.Data
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
 
-            modelBuilder.Entity<FoodItem>()
-                .HasMany<Meal>(f => f.ListOfMeals)
-                .WithMany(m => m.ListOfFoods);
-                
+            //modelBuilder.Entity<FoodItem>()
+            //    .HasMany<Meal>(f => f.ListOfMeals)
+            //    .WithMany(m => m.ListOfFoods);
+
 
             //modelBuilder
             //    .Entity<FoodMeal>()

@@ -10,11 +10,13 @@ namespace MacrosTracker.Data
 {
     public class FoodMeal
     {
-        [Key]
+        [Key, Column(Order = 0)]
+        [ForeignKey(nameof(Meal))]
         public int MealId { get; set; }
         public Meal Meal { get; set; }
 
-        [Key]
+        [Key, Column(Order = 1)]
+        [ForeignKey(nameof(FoodItem))]
         public int FoodId { get; set; }
         public FoodItem FoodItem { get; set; }
     }
