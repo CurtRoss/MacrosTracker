@@ -17,6 +17,7 @@ using MacrosTracker.WebAPI.Models;
 using MacrosTracker.WebAPI.Providers;
 using MacrosTracker.WebAPI.Results;
 using MacrosTracker.Data;
+using System.Linq;
 
 namespace MacrosTracker.WebAPI.Controllers
 {
@@ -26,6 +27,7 @@ namespace MacrosTracker.WebAPI.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+
 
         public AccountController()
         {
@@ -59,11 +61,18 @@ namespace MacrosTracker.WebAPI.Controllers
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
+
+            ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
+
             return new UserInfoViewModel
             {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null,
+                Age = user.Age,
+                Weight = user.Weight,
+                Height = user.Height,
+                MaleOrFemale = user.MaleOrFemale
             };
         }
 
@@ -126,13 +135,43 @@ namespace MacrosTracker.WebAPI.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
 
             return Ok();
+        }
+
+        // PUT api/Account/UpdateUser
+        [Route("UpdateUser")]
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdateUser(UserUpdateModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            if (user == null)
+                return BadRequest("User cannot be null");
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx.Users
+                    .Single(e => e.Id == user.Id);
+
+                entity.Email = model.Email;
+                entity.DateOfBirth = model.DateOfBirth;
+                entity.Height = model.Height;
+                entity.Weight = model.Weight;
+                entity.MaleOrFemale = model.MaleOrFemale;
+
+                await ctx.SaveChangesAsync();
+                return Ok("User Updated");
+            }
         }
 
         // POST api/Account/SetPassword
@@ -259,9 +298,9 @@ namespace MacrosTracker.WebAPI.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -329,7 +368,15 @@ namespace MacrosTracker.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser()
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                DateOfBirth = model.DateOfBirth,
+                Height = model.HeightInInches,
+                MaleOrFemale = model.MaleOrFemale,
+                Weight = model.Weight
+            };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -369,7 +416,7 @@ namespace MacrosTracker.WebAPI.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }
