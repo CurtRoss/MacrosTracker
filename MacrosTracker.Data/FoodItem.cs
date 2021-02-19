@@ -9,6 +9,7 @@ namespace MacrosTracker.Data
 {
     public class FoodItem
     {
+
         [Key]
         public int FoodId { get; set; }
 
@@ -30,5 +31,6 @@ namespace MacrosTracker.Data
         public DateTimeOffset CreatedUtc { get; set; }
 
         public DateTimeOffset? ModifiedUtc { get; set; }
+
     }
 }
