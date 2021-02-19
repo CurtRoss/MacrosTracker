@@ -10,7 +10,12 @@ namespace MacrosTracker.Models
     {
         public int FoodId { get; set; }
         public string FoodName { get; set; }
-       // public virtual List<Meal> ListOfMeals { get; set; } = new List<Meal>();
+        public decimal Amount { get; set; }
+        public double Protein { get; set; }
+        public double Fat { get; set; }
+        public double Carbs { get; set; }
+        public double Calories { get; set; }
+        // public virtual List<Meal> ListOfMeals { get; set; } = new List<Meal>();
         public DateTimeOffset CreatedUtc { get; set; }
 
         public DateTimeOffset? ModifiedUtc { get; set; }

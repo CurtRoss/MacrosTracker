@@ -13,6 +13,11 @@ namespace MacrosTracker.Models
         [MaxLength(100, ErrorMessage = "There are too many characters in this field.")]
         public string FoodName { get; set; }
         public int FoodId { get; set; }
+        public decimal Amount { get; set; }
+        public double Protein { get; set; }
+        public double Fat { get; set; }
+        public double Carbs { get; set; }
+        public double Calories { get; set; }
 
 
     }
