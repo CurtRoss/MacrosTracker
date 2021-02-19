@@ -84,13 +84,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="FoodItem.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202102120128589_InitialCreate.cs" />
+    <Compile Include="Migrations\202102120128589_InitialCreate.Designer.cs">
+      <DependentUpon>202102120128589_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102161813582_AddPropertiesToApplicationUser.cs" />
+    <Compile Include="Migrations\202102161813582_AddPropertiesToApplicationUser.Designer.cs">
+      <DependentUpon>202102161813582_AddPropertiesToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102170043227_add-migration UpdateHeight.cs" />
+    <Compile Include="Migrations\202102170043227_add-migration UpdateHeight.Designer.cs">
+      <DependentUpon>202102170043227_add-migration UpdateHeight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102170058504_FiguringStuffout.cs" />
+    <Compile Include="Migrations\202102170058504_FiguringStuffout.Designer.cs">
+      <DependentUpon>202102170058504_FiguringStuffout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202102120128589_InitialCreate.resx">
+      <DependentUpon>202102120128589_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102161813582_AddPropertiesToApplicationUser.resx">
+      <DependentUpon>202102161813582_AddPropertiesToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102170043227_add-migration UpdateHeight.resx">
+      <DependentUpon>202102170043227_add-migration UpdateHeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102170058504_FiguringStuffout.resx">
+      <DependentUpon>202102170058504_FiguringStuffout.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
