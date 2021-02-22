@@ -28,10 +28,52 @@ namespace MacrosTracker.Data
 
         public virtual List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
         public string Category { get; set; }
-        public int Protein { get; set; }
-        public int Fat { get; set; }
-        public int Carbs { get; set; }
-        public int Calories { get; set; }
+        public double Protein
+        {
+            get
+            {
+                double totalProtein = 0;
+                foreach(FoodItem foodItem in ListOfFoods)
+                {
+                    totalProtein = totalProtein + foodItem.Protein;
+                }
+                return totalProtein;
+            }
+        }
+        public double Fat
+        {
+            get
+            {
+                double totalFat = 0;
+                foreach (FoodItem foodItem in ListOfFoods)
+                {
+                    totalFat = totalFat + foodItem.Fat;
+                }
+                return totalFat;
+            }
+        }
+
+        public double Carbs
+        {
+            get
+            {
+                double totalCarbs = 0;
+                foreach (FoodItem foodItem in ListOfFoods)
+                {
+                    totalCarbs = totalCarbs + foodItem.Carbs;
+                }
+                return totalCarbs;
+            }
+        }
+        
+        public double Calories
+        {
+            get
+            {
+                double totalCalories = Carbs * 4 + Protein * 4 + Fat * 9;
+                return totalCalories;
+            }
+        }
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
         public DateTimeOffset ModifiedUtc { get; set; }
