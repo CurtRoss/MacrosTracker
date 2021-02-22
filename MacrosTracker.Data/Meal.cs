@@ -23,7 +23,9 @@ namespace MacrosTracker.Data
         [MaxLength(50, ErrorMessage = "Meal Name limited to 50 characters.")]
         public string MealName { get; set; }
 
-        
+        public List<int> ListOfFoodIds { get; set; }
+
+
         public virtual List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
         public string Category { get; set; }
         public int Protein { get; set; }
