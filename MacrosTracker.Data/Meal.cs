@@ -11,21 +11,61 @@ namespace MacrosTracker.Data
     {
         [Key]
         public int MealId { get; set; }
+
         public int FoodId { get; set; }
+
         [Required]
         public Guid UserId { get; set; }
+
         [Required]
         [MaxLength(50, ErrorMessage = "Meal Name limited to 50 characters.")]
         public string MealName { get; set; }
-        //[Required]
-        //public List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
+
+        [Required]
+        public List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
+
         public string Category { get; set; }
-        public int Protein { get; set; }
-        public int Fat { get; set; }
-        public int Carbs { get; set; }
-        public int Calories { get; set; }
+
+        public double Protein
+        {
+            get
+            {
+                var protein = ListOfFoods.Sum(e => e.Protein);
+                return protein;
+            }
+        }
+
+        public double Fat
+        {
+
+            get
+            {
+                var fat = ListOfFoods.Sum(e => e.Fat);
+                return fat;
+            }
+        }
+
+        public double Carbs
+        {
+            get
+            {
+                var carbs = ListOfFoods.Sum(e => e.Carbs);
+                return carbs;
+            }
+        }
+
+        public double Calories
+        {
+            get
+            {
+                var calories = ListOfFoods.Sum(e => e.Calories);
+                return calories;
+            }
+        }
+
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
+
         public DateTimeOffset ModifiedUtc { get; set; }
     }
 }
