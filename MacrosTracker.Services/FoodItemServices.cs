@@ -22,7 +22,7 @@ namespace MacrosTracker.Services
             var entity =
                  new FoodItem()
                  {
-                     FoodId= model.FoodId,
+                     
                      UserId = _userId,
                      Amount = model.Amount,
                      FoodName = model.FoodName,
@@ -33,11 +33,14 @@ namespace MacrosTracker.Services
                      CreatedUtc = DateTimeOffset.Now
                  };
 
+
             using (var ctx = new ApplicationDbContext())
             {
-                var foodItem = ctx.FoodItems.Find(entity.FoodId);
-                //User.ListOfFoodItems.Add(entity);
-                ctx.FoodItems.Add(entity);
+                //Add food to users list of foods
+                var user = ctx.Users.Find(entity.UserId);
+                user.ListOfFoods.Add(entity);
+
+                ctx.FoodItems.Add(entity); 
                 return ctx.SaveChanges() == 1;
             }
         }

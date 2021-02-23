@@ -40,7 +40,9 @@ namespace MacrosTracker.Data
                 return ageadj;
             }
         }
-        
+        public virtual List<Meal> ListOfMeals { get; set; } = new List<Meal>();
+        public virtual List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
+
         public int DailyCalorieGoalToLoseWeight
         {
             get
@@ -57,6 +59,8 @@ namespace MacrosTracker.Data
         //public List<Recipe> MyRecipes { get; set; }
         //public List<Food> UsersFoods { get; set; }
         //public List<DailyMeal> UsersMeals { get; set; }
+
+
 
     }
 
@@ -77,6 +81,7 @@ namespace MacrosTracker.Data
 
         public DbSet<FoodItem> FoodItems { get; set; }
         public DbSet<Meal> DailyMeals { get; set; }
+        public DbSet <FoodMeal> FoodMeals { get; set; }
 
 
         //public DbSet<Day> Days { get; set; }
@@ -91,7 +96,32 @@ namespace MacrosTracker.Data
                 .Configurations
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
+
+            //modelBuilder.Entity<FoodItem>()
+            //    .HasMany<Meal>(f => f.ListOfMeals)
+            //    .WithMany(m => m.ListOfFoods);
+
+
+            //modelBuilder
+            //    .Entity<FoodMeal>()
+            //    .HasKey(fm => new { fm.FoodId, fm.MealId });
+
+            //modelBuilder
+            //    .Entity<FoodMeal>()
+            //    .HasOne<FoodItem>(fm => fm.FoodItem)
+            //    .WithMany(f => f.ListOfMeals)
+            //    .HasForeignKey(fm => fm.FoodId);
+
+            //modelBuilder.Entity<FoodMeal>()
+            //    .HasOne<Meal>(fm => fm.Meal)
+            //    .WithMany(m => m.ListOfFoods)
+            //    .HasForeignKey(fm => fm.MealId);
+
         }
+
+        //protected override void OnModelCreating2(ModelBuilder modelBuilder)
+
+        
 
         public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
         {
