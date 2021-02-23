@@ -35,7 +35,7 @@ namespace MacrosTracker.Data
                 double totalProtein = 0;
                 foreach(FoodItem foodItem in ListOfFoods)
                 {
-                    totalProtein = totalProtein + foodItem.Protein;
+                    totalProtein += foodItem.Protein;
                 }
                 return totalProtein;
             }

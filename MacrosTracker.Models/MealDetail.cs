@@ -12,10 +12,10 @@ namespace MacrosTracker.Models
         public int MealId { get; set; }
         public string MealName { get; set; }
         public string Category { get; set; }
-        public int Protein { get; set; }
-        public int Fat { get; set; }
-        public int Carbs { get; set; }
-        public int Calories { get; set; }
+        public double Protein { get; set; }
+        public double Fat { get; set; }
+        public double Carbs { get; set; }
+        public double Calories { get; set; }
         [Display(Name ="Created")]
         public DateTimeOffset CreatedUtc { get; set; }
         [Display(Name ="Modified")]

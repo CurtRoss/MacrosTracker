@@ -115,6 +115,10 @@
     <Compile Include="Migrations\202102190319451_CorrectedForeignKeys.designer.cs">
       <DependentUpon>202102190319451_CorrectedForeignKeys.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102231831022_FoodMealAdded.cs" />
+    <Compile Include="Migrations\202102231831022_FoodMealAdded.designer.cs">
+      <DependentUpon>202102231831022_FoodMealAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -140,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102190319451_CorrectedForeignKeys.resx">
       <DependentUpon>202102190319451_CorrectedForeignKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102231831022_FoodMealAdded.resx">
+      <DependentUpon>202102231831022_FoodMealAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

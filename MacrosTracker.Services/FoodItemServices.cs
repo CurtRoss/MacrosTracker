@@ -26,7 +26,6 @@ namespace MacrosTracker.Services
                      UserId = _userId,
                      Amount = model.Amount,
                      FoodName = model.FoodName,
-                     Calories = model.Calories,
                      Protein = model.Protein,
                      Fat = model.Fat,
                      Carbs = model.Carbs,
@@ -37,11 +36,11 @@ namespace MacrosTracker.Services
             using (var ctx = new ApplicationDbContext())
             {
                 //Add food to users list of foods
-                var user = ctx.Users.Find(entity.UserId);
+                var user = ctx.Users.Find(entity.UserId.ToString());
                 user.ListOfFoods.Add(entity);
 
                 ctx.FoodItems.Add(entity); 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() >0 ;
             }
         }
 
@@ -106,7 +105,7 @@ namespace MacrosTracker.Services
                 entity.FoodName = model.FoodName;
                 entity.FoodId = model.FoodId;
                 entity.Amount = model.Amount;
-                entity.Calories = model.Calories;
+                
                 entity.Carbs = model.Carbs;
                 entity.Protein = model.Protein;
                 entity.Fat = model.Fat;

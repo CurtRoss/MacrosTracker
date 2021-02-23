@@ -24,7 +24,14 @@ namespace MacrosTracker.Data
         public double Protein { get; set; }
         public double Fat { get; set; }
         public double Carbs { get; set; }
-        public double Calories { get; set; }
+        public double Calories
+        {
+            get
+            {
+                double totalCalories = Carbs * 4 + Protein * 4 + Fat * 9;
+                return totalCalories;
+            }
+        }
         public Guid UserId { get; set; }
         public virtual List<Meal> ListOfMeals { get; set; } = new List<Meal>();
 
