@@ -91,33 +91,9 @@
     <Compile Include="FoodMeal.cs" />
     <Compile Include="Meal.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202102120128589_InitialCreate.cs" />
-    <Compile Include="Migrations\202102120128589_InitialCreate.Designer.cs">
-      <DependentUpon>202102120128589_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102161813582_AddPropertiesToApplicationUser.cs" />
-    <Compile Include="Migrations\202102161813582_AddPropertiesToApplicationUser.Designer.cs">
-      <DependentUpon>202102161813582_AddPropertiesToApplicationUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102170043227_add-migration UpdateHeight.cs" />
-    <Compile Include="Migrations\202102170043227_add-migration UpdateHeight.Designer.cs">
-      <DependentUpon>202102170043227_add-migration UpdateHeight.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102170058504_FiguringStuffout.cs" />
-    <Compile Include="Migrations\202102170058504_FiguringStuffout.Designer.cs">
-      <DependentUpon>202102170058504_FiguringStuffout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102190305520_ManyToMany.cs" />
-    <Compile Include="Migrations\202102190305520_ManyToMany.designer.cs">
-      <DependentUpon>202102190305520_ManyToMany.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102190319451_CorrectedForeignKeys.cs" />
-    <Compile Include="Migrations\202102190319451_CorrectedForeignKeys.designer.cs">
-      <DependentUpon>202102190319451_CorrectedForeignKeys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102231831022_FoodMealAdded.cs" />
-    <Compile Include="Migrations\202102231831022_FoodMealAdded.designer.cs">
-      <DependentUpon>202102231831022_FoodMealAdded.cs</DependentUpon>
+    <Compile Include="Migrations\202102240027338_NewInitialMigration.cs" />
+    <Compile Include="Migrations\202102240027338_NewInitialMigration.designer.cs">
+      <DependentUpon>202102240027338_NewInitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,26 +103,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102120128589_InitialCreate.resx">
-      <DependentUpon>202102120128589_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102161813582_AddPropertiesToApplicationUser.resx">
-      <DependentUpon>202102161813582_AddPropertiesToApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102170043227_add-migration UpdateHeight.resx">
-      <DependentUpon>202102170043227_add-migration UpdateHeight.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102170058504_FiguringStuffout.resx">
-      <DependentUpon>202102170058504_FiguringStuffout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102190305520_ManyToMany.resx">
-      <DependentUpon>202102190305520_ManyToMany.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102190319451_CorrectedForeignKeys.resx">
-      <DependentUpon>202102190319451_CorrectedForeignKeys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102231831022_FoodMealAdded.resx">
-      <DependentUpon>202102231831022_FoodMealAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102240027338_NewInitialMigration.resx">
+      <DependentUpon>202102240027338_NewInitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
