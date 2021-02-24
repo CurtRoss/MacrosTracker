@@ -22,23 +22,25 @@ namespace MacrosTracker.Services
             var entity =
                  new FoodItem()
                  {
-                     FoodId= model.FoodId,
+                     
                      UserId = _userId,
                      Amount = model.Amount,
                      FoodName = model.FoodName,
-                     Calories = model.Calories,
                      Protein = model.Protein,
                      Fat = model.Fat,
                      Carbs = model.Carbs,
                      CreatedUtc = DateTimeOffset.Now
                  };
 
+
             using (var ctx = new ApplicationDbContext())
             {
-                var foodItem = ctx.FoodItems.Find(entity.FoodId);
-                //User.ListOfFoodItems.Add(entity);
-                ctx.FoodItems.Add(entity);
-                return ctx.SaveChanges() == 1;
+                //Add food to users list of foods
+                var user = ctx.Users.Find(entity.UserId.ToString());
+                user.ListOfFoods.Add(entity);
+
+                ctx.FoodItems.Add(entity); 
+                return ctx.SaveChanges() > 0;
             }
         }
 
@@ -103,7 +105,7 @@ namespace MacrosTracker.Services
                 entity.FoodName = model.FoodName;
                 entity.FoodId = model.FoodId;
                 entity.Amount = model.Amount;
-                entity.Calories = model.Calories;
+                
                 entity.Carbs = model.Carbs;
                 entity.Protein = model.Protein;
                 entity.Fat = model.Fat;

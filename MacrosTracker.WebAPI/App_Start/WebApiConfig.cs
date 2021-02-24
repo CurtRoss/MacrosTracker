@@ -24,7 +24,11 @@ namespace MacrosTracker.WebAPI
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
+
             );
+
+            //for circular reference
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }
