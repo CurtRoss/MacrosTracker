@@ -7,13 +7,13 @@ namespace MacrosTracker.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class FoodMealAdded : IMigrationMetadata
+    public sealed partial class NewInitialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FoodMealAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NewInitialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202102231831022_FoodMealAdded"; }
+            get { return "202102240027338_NewInitialMigration"; }
         }
         
         string IMigrationMetadata.Source
