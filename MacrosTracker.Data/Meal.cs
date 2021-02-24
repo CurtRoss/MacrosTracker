@@ -13,43 +13,42 @@ namespace MacrosTracker.Data
         [Key]
         public int MealId { get; set; }
 
-        //[ForeignKey(nameof(FoodItem))]
-        //public int FoodId { get; set; }
-        //public virtual FoodItem FoodItem { get; set; }
+
+        public int FoodId { get; set; }
+
 
         [Required]
         public Guid UserId { get; set; }
+
         [Required]
         [MaxLength(50, ErrorMessage = "Meal Name limited to 50 characters.")]
         public string MealName { get; set; }
+
 
         public List<int> ListOfFoodIds { get; set; }
 
 
         public virtual List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
         public string Category { get; set; }
+
         public double Protein
         {
             get
             {
-                double totalProtein = 0;
-                foreach(FoodItem foodItem in ListOfFoods)
-                {
-                    totalProtein += foodItem.Protein;
-                }
-                return totalProtein;
+
+                var protein = ListOfFoods.Sum(e => e.Protein);
+                return protein;
             }
         }
+
         public double Fat
         {
+
             get
             {
-                double totalFat = 0;
-                foreach (FoodItem foodItem in ListOfFoods)
-                {
-                    totalFat = totalFat + foodItem.Fat;
-                }
-                return totalFat;
+                var fat = ListOfFoods.Sum(e => e.Fat);
+                return fat;
+
             }
         }
 
@@ -57,25 +56,27 @@ namespace MacrosTracker.Data
         {
             get
             {
-                double totalCarbs = 0;
-                foreach (FoodItem foodItem in ListOfFoods)
-                {
-                    totalCarbs = totalCarbs + foodItem.Carbs;
-                }
-                return totalCarbs;
+
+                var carbs = ListOfFoods.Sum(e => e.Carbs);
+                return carbs;
             }
         }
-        
+
+
         public double Calories
         {
             get
             {
-                double totalCalories = Carbs * 4 + Protein * 4 + Fat * 9;
-                return totalCalories;
+
+                var calories = ListOfFoods.Sum(e => e.Calories);
+                return calories;
             }
         }
+
+
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
+
         public DateTimeOffset ModifiedUtc { get; set; }
     }
 }
