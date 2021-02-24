@@ -44,7 +44,6 @@ namespace MacrosTracker.Services
                 //user.ListOfMeals.Add(entity);
                 foreach (int i in entity.ListOfFoodIds)
                 {
-
                     var foodMealEntity =
                         new FoodMeal()
                         {
@@ -52,7 +51,6 @@ namespace MacrosTracker.Services
                             FoodId = i
                         };
                     ctx.FoodMeals.Add(foodMealEntity);
-
                 }
 
                 ctx.DailyMeals.Add(entity);

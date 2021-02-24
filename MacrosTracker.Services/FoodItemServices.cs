@@ -40,7 +40,7 @@ namespace MacrosTracker.Services
                 user.ListOfFoods.Add(entity);
 
                 ctx.FoodItems.Add(entity); 
-                return ctx.SaveChanges() >0 ;
+                return ctx.SaveChanges() > 0;
             }
         }
 
