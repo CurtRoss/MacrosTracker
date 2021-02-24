@@ -129,7 +129,5 @@ namespace MacrosTracker.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
-
     }
 }
