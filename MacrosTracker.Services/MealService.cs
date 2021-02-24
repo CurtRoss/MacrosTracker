@@ -29,21 +29,29 @@ namespace MacrosTracker.Services
                     CreatedUtc = DateTimeOffset.Now
                 };
 
-            
-
             using (var ctx = new ApplicationDbContext())
             {
                 //for each foodID in ListOfFoodIds, add that food to this meals list of foods.
+                //foreach (int i in entity.ListOfFoodIds)
+                //{
+                //    var food = ctx.FoodItems.Find(i);
+                //    entity.ListOfFoods.Add(food);
+                //}
+
+
+                //Add meal to users list of meals
+                //var user = ctx.Users.Find(entity.UserId.ToString());
+                //user.ListOfMeals.Add(entity);
                 foreach (int i in entity.ListOfFoodIds)
                 {
-                    var food = ctx.FoodItems.Find(i);
-                    entity.ListOfFoods.Add(food);
+                    var foodMealEntity =
+                        new FoodMeal()
+                        {
+                            MealId = entity.MealId,
+                            FoodId = i
+                        };
+                    ctx.FoodMeals.Add(foodMealEntity);
                 }
-
-                
-                //Add meal to users list of meals
-                var user = ctx.Users.Find(entity.UserId.ToString());
-                user.ListOfMeals.Add(entity);
 
                 ctx.DailyMeals.Add(entity);
                 return ctx.SaveChanges() > 0;
@@ -81,6 +89,8 @@ namespace MacrosTracker.Services
                 return
                     new MealDetail
                     {
+                        //display list of foods for this meal
+
                         MealId = entity.MealId,
                         MealName = entity.MealName,
                         Category = entity.Category,
