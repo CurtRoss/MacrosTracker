@@ -87,6 +87,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Day.cs" />
+    <Compile Include="JournalEntry.cs" />
     <Compile Include="FoodItem.cs" />
     <Compile Include="FoodMeal.cs" />
     <Compile Include="Meal.cs" />

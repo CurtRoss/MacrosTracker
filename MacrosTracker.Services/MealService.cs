@@ -31,17 +31,6 @@ namespace MacrosTracker.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                //for each foodID in ListOfFoodIds, add that food to this meals list of foods.
-                //foreach (int i in entity.ListOfFoodIds)
-                //{
-                //    var food = ctx.FoodItems.Find(i);
-                //    entity.ListOfFoods.Add(food);
-                //}
-
-
-                //Add meal to users list of meals
-                //var user = ctx.Users.Find(entity.UserId.ToString());
-                //user.ListOfMeals.Add(entity);
                 foreach (int i in entity.ListOfFoodIds)
                 {
                     var foodMealEntity =
@@ -51,8 +40,8 @@ namespace MacrosTracker.Services
                             FoodId = i
                         };
                     ctx.FoodMeals.Add(foodMealEntity);
+                    entity.ListOfFoods.Add(ctx.FoodItems.Find(i));
                 }
-
                 ctx.DailyMeals.Add(entity);
                 return ctx.SaveChanges() > 0;
             }
@@ -113,15 +102,32 @@ namespace MacrosTracker.Services
                         .DailyMeals
                         .Single(e => e.MealId == model.MealId && e.UserId == _userId);
 
+                var foodMealsToRemove = ctx.FoodMeals.Where(e => e.MealId == entity.MealId);
+                foreach (FoodMeal item in foodMealsToRemove)
+                {
+                   // Console.WriteLine("Testing");
+                   // Console.WriteLine(item);
+                    ctx.FoodMeals.Remove(item);
+                   //Console.WriteLine("Removed");
+                }
+
+                foreach (int i in model.ListOfFoodIds)
+                {
+                    var foodMealEntity =
+                        new FoodMeal()
+                        {
+                            MealId = model.MealId,
+                            FoodId = i
+                        };
+                    ctx.FoodMeals.Add(foodMealEntity);
+                }
+
                 entity.MealName = model.MealName;
                 entity.Category = model.Category;
-                //entity.Carbs = model.Carbs;
-                //entity.Fat = model.Fat;
-                //entity.Protein = model.Protein;
-                //entity.Calories = model.Calories;
+                entity.ListOfFoodIds = model.ListOfFoodIds;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
 
@@ -134,9 +140,35 @@ namespace MacrosTracker.Services
                         .DailyMeals
                         .Single(e => e.MealId == mealId && e.UserId == _userId);
 
+                var foodMealsToRemove = ctx.FoodMeals.Where(e => e.MealId == entity.MealId);
+                foreach (FoodMeal item in foodMealsToRemove)
+                {
+                    ctx.FoodMeals.Remove(item);
+                }
+
                 ctx.DailyMeals.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
+            }
+        }
+
+        //Helper Method
+        public IEnumerable<FoodMealListItem> GetFoodMeals(MealEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .FoodMeals
+                        .Where(e => e.Meal.UserId == _userId && model.MealId == e.MealId)
+                        .Select(
+                        e =>
+                            new FoodMealListItem
+                            {
+                                MealId = e.MealId,
+                                FoodId = e.FoodId,
+                            });
+                return query.ToArray();
             }
         }
     }
