@@ -83,9 +83,7 @@ namespace MacrosTracker.Data
         public DbSet<Meal> DailyMeals { get; set; }
         public DbSet <FoodMeal> FoodMeals { get; set; }
         public DbSet <JournalEntry> JournalEntries { get; set; }
-
-
-        //public DbSet<Day> Days { get; set; }
+        public DbSet<Day> Days { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

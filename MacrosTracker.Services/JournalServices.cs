@@ -1,4 +1,5 @@
 ﻿using MacrosTracker.Data;
+using MacrosTracker.Models.DayModels;
 using MacrosTracker.Models.JournaleEntrymodels;
 using System;
 using System.Collections.Generic;
@@ -19,16 +20,30 @@ namespace MacrosTracker.Services
 
         public bool CreateJourneyEntry(JournalEntryCreate model)
         {
+
             var entity =
                 new JournalEntry()
                 {
                     UserId = _userId,
                     FoodItem = model.FoodItem,
                     Meal = model.Meal,
-                    TimeStamp = model.JournalDate
+                    TimeStamp = model.JournalDate,
+                    DayId = model.JournalDate.Date
                 };
             using (var ctx = new ApplicationDbContext())
             {
+                //If there is no day object for the date of the journal entry, create a day.
+                if (ctx.Days.Find(model.JournalDate.Date) == null)
+                {
+                    var dayEntity = 
+                    new Day
+                    {
+                        DateOfEntry = model.JournalDate
+                    };
+                    ctx.Days.Add(dayEntity);
+                }
+
+                
                 ctx.JournalEntries.Add(entity);
                 return ctx.SaveChanges() > 0;
             }

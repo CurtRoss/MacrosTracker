@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DayModels\DayModels.cs" />
     <Compile Include="FoodItemCreate.cs" />
     <Compile Include="FoodItemDetail.cs" />
     <Compile Include="FoodItemEdit.cs" />
