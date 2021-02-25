@@ -86,7 +86,7 @@ namespace MacrosTracker.Services
                         Carbs = entity.Carbs,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc,
-                        //ListOfMeals = entity.ListOfMeals
+                        ListOfMeals = entity.ListOfMeals
                     };
             }
 
