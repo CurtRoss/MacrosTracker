@@ -69,12 +69,40 @@ namespace MacrosTracker.Services
 
         public MealDetail GetMealById(int id)
         {
+         
+
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .DailyMeals
                         .Single(e => e.MealId == id && e.UserId == _userId);
+
+
+                List<int> foods = entity.ListOfFoodIds;
+                foreach (int i in entity.ListOfFoodIds)
+                {
+                    var foodMealEntity =
+                        new FoodMeal()
+                        {
+                            MealId = entity.MealId,
+                            FoodId = i
+                        };
+                    ctx.FoodMeals.Find(foodMealEntity);
+                }
+
+                //entity.ListOfFoods = new List<FoodItem>();
+                //foreach (int i in entity.ListOfFoodIds)
+                //{
+                //    var foodMealEntity =
+                //        new FoodMeal()
+                //        {
+                //            MealId = entity.MealId,
+                //            FoodId = i
+                //        };
+                //    ctx.FoodMeals.Find(foodMealEntity);
+                //}
+
                 return
                     new MealDetail
                     {
@@ -88,10 +116,12 @@ namespace MacrosTracker.Services
                         Carbs = entity.Carbs,
                         Calories = entity.Calories,
                         CreatedUtc = entity.CreatedUtc,
-                        ModifiedUtc = entity.ModifiedUtc
+                        ModifiedUtc = entity.ModifiedUtc,
+                        ListOfFoodIds = foods
                     };
             }
         }
+
 
         public bool UpdateMeal(MealEdit model)
         {
