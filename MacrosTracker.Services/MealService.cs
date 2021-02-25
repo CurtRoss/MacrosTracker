@@ -51,6 +51,7 @@ namespace MacrosTracker.Services
                             FoodId = i
                         };
                     ctx.FoodMeals.Add(foodMealEntity);
+                    entity.ListOfFoods.Add(ctx.FoodItems.Find(i));
                 }
 
                 ctx.DailyMeals.Add(entity);
