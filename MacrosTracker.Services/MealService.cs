@@ -101,10 +101,13 @@ namespace MacrosTracker.Services
                         .DailyMeals
                         .Single(e => e.MealId == model.MealId && e.UserId == _userId);
 
-                
-                foreach (var item in ctx.FoodMeals.Where(e => e.MealId == entity.MealId))
+                var foodMealsToRemove = ctx.FoodMeals.Where(e => e.MealId == entity.MealId);
+                foreach (FoodMeal item in foodMealsToRemove)
                 {
+                   // Console.WriteLine("Testing");
+                   // Console.WriteLine(item);
                     ctx.FoodMeals.Remove(item);
+                   //Console.WriteLine("Removed");
                 }
 
                 foreach (int i in model.ListOfFoodIds)
@@ -136,9 +139,15 @@ namespace MacrosTracker.Services
                         .DailyMeals
                         .Single(e => e.MealId == mealId && e.UserId == _userId);
 
+                var foodMealsToRemove = ctx.FoodMeals.Where(e => e.MealId == entity.MealId);
+                foreach (FoodMeal item in foodMealsToRemove)
+                {
+                    ctx.FoodMeals.Remove(item);
+                }
+
                 ctx.DailyMeals.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
 

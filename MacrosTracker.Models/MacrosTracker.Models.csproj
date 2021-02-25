@@ -62,6 +62,7 @@
     <Compile Include="FoodItemEdit.cs" />
     <Compile Include="FoodItemListItem.cs" />
     <Compile Include="FoodMealListItem.cs" />
+    <Compile Include="JournaleEntrymodels\JournalModels.cs" />
     <Compile Include="MealDetail.cs" />
     <Compile Include="MealEdit.cs" />
     <Compile Include="MealListItem.cs" />

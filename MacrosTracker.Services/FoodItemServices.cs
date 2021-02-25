@@ -124,9 +124,15 @@ namespace MacrosTracker.Services
                         .FoodItems
                         .Single(e => e.FoodId == Id && e.UserId == _userId);
 
+                var foodMealsToRemove = ctx.FoodMeals.Where(e => e.FoodId == entity.FoodId);
+                foreach (FoodMeal item in foodMealsToRemove)
+                {
+                    ctx.FoodMeals.Remove(item);
+                }
+
                 ctx.FoodItems.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 1;
             }
         }
     }
