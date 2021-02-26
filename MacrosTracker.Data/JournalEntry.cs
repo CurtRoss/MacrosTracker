@@ -14,7 +14,7 @@ namespace MacrosTracker.Data
         public int JournalEntryId { get; set; }
 
         [ForeignKey(nameof(Day))]
-        public DateTime DayId { get; set; }
+        public int DayId { get; set; }
         public virtual Day Day { get; set; }
 
 
