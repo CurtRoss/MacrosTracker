@@ -9,9 +9,15 @@ namespace MacrosTracker.Data
 {
     public class Day
     {
-        [Key]
-        public int DayId { get; set; }
         public DateTime DateOfEntry { get; set; }
+        [Key]
+        public long DayId
+        {
+            get
+            {
+                return DateOfEntry.Date.Ticks;
+            }
+        }
 
         public int TotalCalories { get; set; }
         public int TotalFats { get; set; }

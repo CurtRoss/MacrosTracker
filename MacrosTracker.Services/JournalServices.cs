@@ -28,12 +28,12 @@ namespace MacrosTracker.Services
                     FoodItem = model.FoodItem,
                     Meal = model.Meal,
                     TimeStamp = model.JournalDate,
-                    DayId = model.JournalDate.Date
+                    DayId = model.JournalDate.Date.Ticks
                 };
             using (var ctx = new ApplicationDbContext())
             {
                 //If there is no day object for the date of the journal entry, create a day.
-                if (ctx.Days.Find(model.JournalDate.Date) == null)
+                if (ctx.Days.Find(model.JournalDate.Date.Ticks) == null)
                 {
                     var dayEntity = 
                     new Day
