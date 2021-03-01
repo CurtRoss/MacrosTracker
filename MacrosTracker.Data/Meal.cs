@@ -36,7 +36,6 @@ namespace MacrosTracker.Data
         {
             get
             {
-
                 var protein = ListOfFoods.Sum(e => e.Protein);
                 return protein;
             }
