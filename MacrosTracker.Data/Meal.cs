@@ -28,14 +28,9 @@ namespace MacrosTracker.Data
         public List<int> ListOfFoodIds { get; set; } = new List<int>();
 
         public virtual List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
-        //public virtual List<FoodItem> ListOfFoods2 { get { 
-        //    foreach (var foodItem in this.ListOfFoodIds)
-        //           {
-        //            foodItem.FoodId = test.ConvertToInt32();
-        //             ListOfFoods.Add(foodItem.FoodId);
-        //        }
-        //            }; set; } = new List<FoodItem>();
+        
         public string Category { get; set; }
+
 
         public double Protein
         {
