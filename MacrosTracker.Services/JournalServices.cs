@@ -75,6 +75,9 @@ namespace MacrosTracker.Services
                 var dayEntity =
                     ctx
                         .Days
+                        //.SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
+                        .Where(e => e.UserId.Equals(_userId))
+                        .ToList()
                         .SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
 
 
@@ -98,6 +101,7 @@ namespace MacrosTracker.Services
                         entity.DayId = newDayEntity.DayId;
 
                         //add journal entry to list of journal entries in day
+                        
                         newDayEntity.JournalEntries.Add(entity);
                         ctx.JournalEntries.Add(entity);
                         return ctx.SaveChanges() > 0;
@@ -105,7 +109,7 @@ namespace MacrosTracker.Services
                 }
 
                 //If the day exists, make the journal entrys dayId the existing day ID
-                entity.DayId = ctx.Days.Find(entity.DayId).DayId;
+                entity.DayId = ctx.Days.Find(dayEntity.DayId).DayId;
 
                 //add journal entry to Day's list of journal entries
                 dayEntity.JournalEntries.Add(entity);
@@ -128,7 +132,11 @@ namespace MacrosTracker.Services
                             new JournalEntryDetail
                             {
                                 JournalEntryId = e.JournalEntryId,
-                                JournalDate = e.TimeStamp.Date,
+                                JournalDate = e.TimeStamp,
+                                Calories = e.Calories,
+                                Carbs = e.Carbs,
+                                Fats = e.Fats,
+                                Proteins = e.Proteins
                             });
                 return query.ToArray();
             }
