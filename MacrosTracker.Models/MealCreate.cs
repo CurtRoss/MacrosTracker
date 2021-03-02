@@ -17,7 +17,7 @@ namespace MacrosTracker.Models
         public List<int> ListOfFoodIds { get; set; }
 
 
-        //public List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
+        public List<FoodItem> ListOfFoods { get; set; } 
         public string Category { get; set; }
     }
 }

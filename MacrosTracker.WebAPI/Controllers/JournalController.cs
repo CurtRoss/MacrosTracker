@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace MacrosTracker.WebAPI.Controllers
@@ -28,7 +29,7 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(journals);
         }
 
-        [HttpPost]
+        [HttpPost, Route("api/PostJournal")]
         public IHttpActionResult Post(JournalEntryCreate journal)
         {
             if (!ModelState.IsValid)
@@ -36,7 +37,7 @@ namespace MacrosTracker.WebAPI.Controllers
 
             var service = CreateJournalService();
 
-            if (!service.CreateJourneyEntry(journal))
+            if (!service.CreateJournalEntry(journal))
                 return InternalServerError();
 
             return Ok();

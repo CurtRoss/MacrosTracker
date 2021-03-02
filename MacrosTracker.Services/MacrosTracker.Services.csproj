@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DayServices.cs" />
     <Compile Include="FoodItemServices.cs" />
     <Compile Include="JournalServices.cs" />
     <Compile Include="MealService.cs" />

@@ -19,10 +19,15 @@ namespace MacrosTracker.Data
 
 
         public Guid UserId { get; set; }
-        public FoodItem FoodItem { get; set; }
-        public Meal Meal { get; set; }
+        public List<int> MealList { get; set; } = new List<int>();
+        public List<int> FoodList { get; set; } = new List<int>();
 
         [Required]
         public DateTime TimeStamp { get; set; }
+
+        public double Calories { get; set; }
+        public double Carbs { get; set; }
+        public double Proteins { get; set; }
+        public double Fats { get; set; }
     }
 }

@@ -18,32 +18,98 @@ namespace MacrosTracker.Services
             _userId = userId;
         }
 
-        public bool CreateJourneyEntry(JournalEntryCreate model)
+        public bool CreateJournalEntry(JournalEntryCreate model)
         {
 
             var entity =
                 new JournalEntry()
                 {
                     UserId = _userId,
-                    FoodItem = model.FoodItem,
-                    Meal = model.Meal,
+                    FoodList = model.FoodList,
+                    MealList = model.MealList,
                     TimeStamp = model.JournalDate,
-                    //DayId = model.JournalDate.Date.Ticks
+
                 };
+
+            double carbs = 0;
+            double protein = 0;
+            double fats = 0;
+            double calories = 0;
+
+            if (model.FoodList != null)
+            {
+                foreach (int i in model.FoodList)
+                {
+                    using (var ctx = new ApplicationDbContext())
+                    {
+                        carbs += ctx.FoodItems.Find(i).Carbs;
+                        protein += ctx.FoodItems.Find(i).Protein;
+                        fats += ctx.FoodItems.Find(i).Fat;
+                        calories += ctx.FoodItems.Find(i).Calories;
+                    }
+                }
+            }
+
+            if (model.MealList != null)
+            {
+                foreach (int i in model.MealList)
+                {
+                    using (var ctx = new ApplicationDbContext())
+                    {
+                        carbs += ctx.DailyMeals.Find(i).Carbs;
+                        protein += ctx.DailyMeals.Find(i).Protein;
+                        fats += ctx.DailyMeals.Find(i).Fat;
+                        calories += ctx.DailyMeals.Find(i).Calories;
+                    }
+                }
+            }
+
+            entity.Carbs = carbs;
+            entity.Proteins = protein;
+            entity.Fats = fats;
+            entity.Calories = calories;
+
+            //find Days where e.journalDate = 
             using (var ctx = new ApplicationDbContext())
             {
-                //If there is no day object for the date of the journal entry, create a day.
-                if (ctx.Days.Find(model.JournalDate.Date.Ticks) == null)
+                var dayEntity =
+                    ctx
+                        .Days
+                        .SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
+
+
+                //If there is no day object for the date of the journal entry, create a day and give the journal entries dayID the new DayID
+                if (dayEntity == null)
                 {
-                    var dayEntity = 
+                    var newDayEntity =
                     new Day
                     {
-                        DateOfEntry = model.JournalDate
+                        DateOfEntry = model.JournalDate,
+                        UserId = _userId
                     };
-                    ctx.Days.Add(dayEntity);
+
+                    //save new day
+                    ctx.Days.Add(newDayEntity);
+                    var didItWork = ctx.SaveChanges();
+
+                    //add the new dayID to our journal entry and add to the database.
+                    if (didItWork > 0)
+                    {
+                        entity.DayId = newDayEntity.DayId;
+
+                        //add journal entry to list of journal entries in day
+                        newDayEntity.JournalEntries.Add(entity);
+                        ctx.JournalEntries.Add(entity);
+                        return ctx.SaveChanges() > 0;
+                    }
                 }
 
-                
+                //If the day exists, make the journal entrys dayId the existing day ID
+                entity.DayId = ctx.Days.Find(entity.DayId).DayId;
+
+                //add journal entry to Day's list of journal entries
+                dayEntity.JournalEntries.Add(entity);
+
                 ctx.JournalEntries.Add(entity);
                 return ctx.SaveChanges() > 0;
             }
@@ -63,8 +129,6 @@ namespace MacrosTracker.Services
                             {
                                 JournalEntryId = e.JournalEntryId,
                                 JournalDate = e.TimeStamp.Date,
-                                FoodItem = e.FoodItem,
-                                Meal = e.Meal
                             });
                 return query.ToArray();
             }
@@ -83,8 +147,10 @@ namespace MacrosTracker.Services
                     {
                         JournalEntryId = entity.JournalEntryId,
                         JournalDate = entity.TimeStamp.Date,
-                        FoodItem = entity.FoodItem,
-                        Meal = entity.Meal
+                        Calories = entity.Calories,
+                        Carbs = entity.Carbs,
+                        Fats = entity.Fats,
+                        Proteins = entity.Proteins
                     };
             }
         }
@@ -99,9 +165,79 @@ namespace MacrosTracker.Services
                         .Single(e => e.JournalEntryId == model.JournalEntryId && e.UserId == _userId);
 
                 entity.TimeStamp = model.JournalDate;
-                entity.Meal = model.Meal;
-                entity.FoodItem = model.FoodItem;
+                entity.MealList = model.MealList;
+                entity.FoodList = model.FoodList;
 
+                double carbs = 0;
+                double protein = 0;
+                double fats = 0;
+                double calories = 0;
+
+                if (model.FoodList != null)
+                {
+                    foreach (int i in model.FoodList)
+                    {
+                        using (var ctx2 = new ApplicationDbContext())
+                        {
+                            carbs += ctx2.FoodItems.Find(i).Carbs;
+                            protein += ctx2.FoodItems.Find(i).Protein;
+                            fats += ctx2.FoodItems.Find(i).Fat;
+                            calories += ctx2.FoodItems.Find(i).Calories;
+                        }
+                    }
+                }
+
+                if (model.MealList != null)
+                {
+                    foreach (int i in model.MealList)
+                    {
+                        using (var ctx2 = new ApplicationDbContext())
+                        {
+                            carbs += ctx2.DailyMeals.Find(i).Carbs;
+                            protein += ctx2.DailyMeals.Find(i).Protein;
+                            fats += ctx2.DailyMeals.Find(i).Fat;
+                            calories += ctx2.DailyMeals.Find(i).Calories;
+                        }
+                    }
+                }
+
+                entity.Carbs = carbs;
+                entity.Proteins = protein;
+                entity.Fats = fats;
+                entity.Calories = calories;
+
+
+                var dayEntity =
+                    ctx
+                        .Days
+                        .SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
+
+
+                //If there is no day object for the date of the journal entry, create a day and give the journal entries dayID the new DayID
+                if (dayEntity == null)
+                {
+                    var newDayEntity =
+                    new Day
+                    {
+                        DateOfEntry = model.JournalDate,
+                        UserId = _userId
+                    };
+
+                    //save new day
+                    ctx.Days.Add(newDayEntity);
+                    var didItWork = ctx.SaveChanges();
+
+                    //add the new dayID to our journal entry and add to the database.
+                    if (didItWork > 0)
+                    {
+                        entity.DayId = newDayEntity.DayId;
+                        ctx.JournalEntries.Add(entity);
+                        return ctx.SaveChanges() > 0;
+                    }
+                }
+                //If the day exists, make the journal entrys dayId the existing day ID
+                entity.DayId = ctx.Days.Find(entity.DayId).DayId;
+                ctx.JournalEntries.Add(entity);
                 return ctx.SaveChanges() > 0;
             }
         }
