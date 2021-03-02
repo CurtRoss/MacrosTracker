@@ -11,6 +11,7 @@ namespace MacrosTracker.Data
     {
         [Key]
         public int DayId { get; set; }
+
         public DateTime DateOfEntry { get; set; }
         public Guid UserId { get; set; }
         public virtual List<JournalEntry> JournalEntries { get; set; }
@@ -33,6 +34,7 @@ namespace MacrosTracker.Data
                 return carbs;
             }
         }
+
 
         public double TotalProteins
         {
