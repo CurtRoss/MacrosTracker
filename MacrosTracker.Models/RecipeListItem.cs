@@ -8,5 +8,9 @@ namespace MacrosTracker.Models
 {
     public class RecipeListItem
     {
+        public int RecipeId { get; set; }
+        public string RecipeName { get; set; }
+
+        public DateTimeOffset CreatedUtc { get; set; }
     }
 }
