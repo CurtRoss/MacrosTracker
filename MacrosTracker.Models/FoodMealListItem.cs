@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MacrosTracker.Models
 {
-    public class Class1
+    public class FoodMealListItem
     {
+        public int FoodId { get; set; }
+        public int MealId { get; set; }
     }
 }
