@@ -14,7 +14,7 @@ namespace MacrosTracker.Data
 
         public DateTime DateOfEntry { get; set; }
         public Guid UserId { get; set; }
-        public virtual List<JournalEntry> JournalEntries { get; set; }
+        public virtual List<JournalEntry> JournalEntries { get; set; } = new List<JournalEntry>();
 
         //public virtual List<FoodItem> FoodItems { get; set; }
         //public virtual List<Meal> Meals { get; set; }
