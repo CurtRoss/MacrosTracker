@@ -22,13 +22,14 @@ namespace MacrosTracker.Services
             var entity =
                  new FoodItem()
                  {
-                     
+
                      UserId = _userId,
                      Amount = model.Amount,
                      FoodName = model.FoodName,
                      Protein = model.Protein,
                      Fat = model.Fat,
                      Carbs = model.Carbs,
+                     
                      CreatedUtc = DateTimeOffset.Now
                  };
 
@@ -74,6 +75,19 @@ namespace MacrosTracker.Services
                     ctx
                         .FoodItems
                         .Single(e => e.FoodId == id && e.UserId == _userId);
+
+                List<int> meals = entity.ListOfMealIds;
+                foreach (int i in entity.ListOfMealIds)
+                {
+                    var foodMealEntity =
+                        new FoodMeal()
+                        {
+                            FoodId = entity.FoodId,
+                            MealId = i
+                        };
+                    ctx.FoodMeals.Find(foodMealEntity);
+                }
+
                 return
                     new FoodItemDetail
                     {

@@ -34,6 +34,7 @@ namespace MacrosTracker.Data
         }
         public Guid UserId { get; set; }
         public virtual List<Meal> ListOfMeals { get; set; } = new List<Meal>();
+        public virtual List<int> ListOfMealIds { get; set; }
 
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }

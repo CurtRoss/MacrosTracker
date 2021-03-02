@@ -28,7 +28,7 @@ namespace MacrosTracker.Services
                     FoodItem = model.FoodItem,
                     Meal = model.Meal,
                     TimeStamp = model.JournalDate,
-                    DayId = model.JournalDate.Date.Ticks
+                    //DayId = model.JournalDate.Date.Ticks
                 };
             using (var ctx = new ApplicationDbContext())
             {
