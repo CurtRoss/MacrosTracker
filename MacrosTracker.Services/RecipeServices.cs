@@ -17,16 +17,17 @@ namespace MacrosTracker.Services
             _userId = userId;
         }
 
-        public bool CreateRecipe(RecipeCreate model) 
-        {
-            var entity =
-               new Recipe()
-               {
-                   UserId = _userId,
-                   RecipeName = model.RecipeName,
-                   ListOfFoodIds = model.ListOfFoodIds,
-                   CreatedUtc = DateTimeOffset.Now
-               };
-        }
+        //public bool CreateRecipe(RecipeCreate model) 
+        //{
+        //    var entity =
+        //       new Recipe()
+        //       {
+        //           UserId = _userId,
+        //           RecipeName = model.RecipeName,
+        //           ListOfFoodIds = model.ListOfFoodIds,
+        //           CreatedUtc = DateTimeOffset.Now
+        //       };
+            
+        //}
     }
 }
