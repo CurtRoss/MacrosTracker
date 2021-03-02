@@ -105,6 +105,10 @@
     <Compile Include="Migrations\202103020202432_JournalEntryAndDayTests.designer.cs">
       <DependentUpon>202103020202432_JournalEntryAndDayTests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103022310167_AddingRecipes.cs" />
+    <Compile Include="Migrations\202103022310167_AddingRecipes.designer.cs">
+      <DependentUpon>202103022310167_AddingRecipes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
@@ -122,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103020202432_JournalEntryAndDayTests.resx">
       <DependentUpon>202103020202432_JournalEntryAndDayTests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103022310167_AddingRecipes.resx">
+      <DependentUpon>202103022310167_AddingRecipes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
