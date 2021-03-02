@@ -18,7 +18,7 @@ namespace MacrosTracker.Data
         [Required]
         [MaxLength(50, ErrorMessage = "Recipe Name limited to 50 characters.")]
         public string RecipeName { get; set; }
-
+        public DateTimeOffset CreatedUtc { get; set; }
 
         public List<int> ListOfFoodIds { get; set; } = new List<int>();
 
