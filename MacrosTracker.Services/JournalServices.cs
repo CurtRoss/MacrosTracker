@@ -74,7 +74,7 @@ namespace MacrosTracker.Services
                 var dayEntity =
                     ctx
                         .Days
-                        .Where(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
+                        .SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
 
 
                 //If there is no day object for the date of the journal entry, create a day and give the journal entries dayID the new DayID
@@ -83,7 +83,8 @@ namespace MacrosTracker.Services
                     var newDayEntity =
                     new Day
                     {
-                        DateOfEntry = model.JournalDate
+                        DateOfEntry = model.JournalDate,
+                        UserId = _userId
                     };
 
                     //save new day
@@ -94,6 +95,9 @@ namespace MacrosTracker.Services
                     if (didItWork > 0)
                     {
                         entity.DayId = newDayEntity.DayId;
+
+                        //add journal entry to list of journal entries in day
+                        newDayEntity.JournalEntries.Add(entity);
                         ctx.JournalEntries.Add(entity);
                         return ctx.SaveChanges() > 0;
                     }
@@ -101,6 +105,10 @@ namespace MacrosTracker.Services
 
                 //If the day exists, make the journal entrys dayId the existing day ID
                 entity.DayId = ctx.Days.Find(entity.DayId).DayId;
+
+                //add journal entry to Day's list of journal entries
+                dayEntity.JournalEntries.Add(entity);
+
                 ctx.JournalEntries.Add(entity);
                 return ctx.SaveChanges() > 0;
             }
@@ -201,7 +209,7 @@ namespace MacrosTracker.Services
                 var dayEntity =
                     ctx
                         .Days
-                        .Where(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
+                        .SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
 
 
                 //If there is no day object for the date of the journal entry, create a day and give the journal entries dayID the new DayID
@@ -210,7 +218,8 @@ namespace MacrosTracker.Services
                     var newDayEntity =
                     new Day
                     {
-                        DateOfEntry = model.JournalDate
+                        DateOfEntry = model.JournalDate,
+                        UserId = _userId
                     };
 
                     //save new day
