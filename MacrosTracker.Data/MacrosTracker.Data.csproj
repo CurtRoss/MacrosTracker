@@ -109,6 +109,10 @@
     <Compile Include="Migrations\202103022310167_AddingRecipes.designer.cs">
       <DependentUpon>202103022310167_AddingRecipes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103030249413_ChangedDay.cs" />
+    <Compile Include="Migrations\202103030249413_ChangedDay.designer.cs">
+      <DependentUpon>202103030249413_ChangedDay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103022310167_AddingRecipes.resx">
       <DependentUpon>202103022310167_AddingRecipes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103030249413_ChangedDay.resx">
+      <DependentUpon>202103030249413_ChangedDay.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
