@@ -42,7 +42,7 @@ namespace MacrosTracker.Services
 
 
         }
-
+        //Get
         public IEnumerable<RecipeListItem> GetRecipe()
         {
             using (var ctx = new ApplicationDbContext())
