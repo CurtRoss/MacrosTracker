@@ -75,7 +75,6 @@ namespace MacrosTracker.Services
                 var dayEntity =
                     ctx
                         .Days
-                        //.SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
                         .Where(e => e.UserId.Equals(_userId))
                         .ToList()
                         .SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
@@ -150,6 +149,7 @@ namespace MacrosTracker.Services
                     ctx
                         .JournalEntries
                         .Single(e => e.JournalEntryId == id && e.UserId == _userId);
+
                 return
                     new JournalEntryDetail
                     {
@@ -218,6 +218,8 @@ namespace MacrosTracker.Services
                 var dayEntity =
                     ctx
                         .Days
+                        .Where(e => e.UserId.Equals(_userId))
+                        .ToList()
                         .SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
 
 

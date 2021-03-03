@@ -20,9 +20,7 @@ namespace MacrosTracker.Models.JournaleEntrymodels
     {
         public int JournalEntryId { get; set; }
         public DateTime JournalDate { get; set; }
-        public Meal Meal { get; set; }
-        public FoodItem FoodItem { get; set; }
-        public List<string> FoodNames { get; set; }
+        //public List<string> FoodNames { get; set; } = new List<string>();
         public double Calories { get; set; }
         public double Proteins { get; set; }
         public double Carbs { get; set; }
