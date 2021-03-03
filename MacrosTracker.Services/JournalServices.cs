@@ -154,7 +154,7 @@ namespace MacrosTracker.Services
                     new JournalEntryDetail
                     {
                         JournalEntryId = entity.JournalEntryId,
-                        JournalDate = entity.TimeStamp.Date,
+                        JournalDate = entity.TimeStamp,
                         Calories = entity.Calories,
                         Carbs = entity.Carbs,
                         Fats = entity.Fats,
