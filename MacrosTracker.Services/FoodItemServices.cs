@@ -87,6 +87,17 @@ namespace MacrosTracker.Services
                         };
                     ctx.FoodMeals.Find(foodMealEntity);
                 }
+                var foodMealList = GetFoodMealsByFoodId(id);
+                foreach(FoodMealListItem foodMeal in foodMealList)
+                {
+                    entity.ListOfMealIds.Add(foodMeal.MealId);
+                }
+
+                var mealList = new List<string>();
+                foreach(int i in entity.ListOfMealIds)
+                {
+                    mealList.Add(ctx.DailyMeals.Find(i).MealName);
+                }
 
                 return
                     new FoodItemDetail
@@ -100,7 +111,7 @@ namespace MacrosTracker.Services
                         Carbs = entity.Carbs,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc,
-                        ListOfMeals = entity.ListOfMeals
+                        ListOfMealNames = mealList
                     };
             }
 
@@ -147,6 +158,24 @@ namespace MacrosTracker.Services
                 ctx.FoodItems.Remove(entity);
 
                 return ctx.SaveChanges() > 1;
+            }
+        }
+        public IEnumerable<FoodMealListItem> GetFoodMealsByFoodId(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .FoodMeals
+                        .Where(e => e.FoodItem.UserId == _userId && id == e.FoodId)
+                        .Select(
+                        e =>
+                            new FoodMealListItem
+                            {
+                                MealId = e.MealId,
+                                FoodId = e.FoodId,
+                            });
+                return query.ToArray();
             }
         }
     }
