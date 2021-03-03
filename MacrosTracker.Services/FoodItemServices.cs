@@ -125,7 +125,7 @@ namespace MacrosTracker.Services
                 entity.Fat = model.Fat;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
-                return ctx.SaveChanges() > 1;
+                return ctx.SaveChanges() > 0;
             }
         }
 
