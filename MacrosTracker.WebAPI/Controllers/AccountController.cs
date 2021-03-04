@@ -72,7 +72,11 @@ namespace MacrosTracker.WebAPI.Controllers
                 Age = user.Age,
                 Weight = user.Weight,
                 Height = user.Height,
-                MaleOrFemale = user.MaleOrFemale
+                MaleOrFemale = user.MaleOrFemale,
+                CarbGoal = user.CarbGoal,
+                ProteinGoal = user.ProteinGoal,
+                FatGoal = user.FatGoal,
+                CalorieGoal = user.DailyCalorieGoalToLoseWeight
             };
         }
 
