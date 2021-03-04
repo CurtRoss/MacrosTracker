@@ -22,6 +22,10 @@ namespace MacrosTracker.Models.DayModels
         public double DayProteins { get; set; }
         public double DayFats { get; set; }
         public double DayCalories { get; set; }
+        public double PlusOrMinusCalories { get; set; }
+        public double PlusOrMinusCarbs { get; set; }
+        public double PlusOrMinusProteins { get; set; }
+        public double PlusOrMinusFats { get; set; }
     }
     public class SpecificDayDetail : DayDetail
     {

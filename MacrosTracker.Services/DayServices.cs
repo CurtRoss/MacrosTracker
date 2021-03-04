@@ -20,6 +20,7 @@ namespace MacrosTracker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var user = ctx.Users.Find(_userId.ToString());
                 var query =
                     ctx
                         .Days
@@ -33,7 +34,11 @@ namespace MacrosTracker.Services
                                 DayCarbs = e.JournalEntries.Sum(x=>x.Carbs),
                                 DayFats = e.JournalEntries.Sum(x=>x.Fats),
                                 DayProteins = e.JournalEntries.Sum(x=>x.Proteins),
-                                DayCalories = e.JournalEntries.Sum(x=>x.Calories)
+                                DayCalories = e.JournalEntries.Sum(x=>x.Calories),
+                                PlusOrMinusCalories = user.DailyCalorieGoalToLoseWeight - e.JournalEntries.Sum(x => x.Calories),
+                                PlusOrMinusCarbs = user.CarbGoal - e.JournalEntries.Sum(x => x.Carbs),
+                                PlusOrMinusProteins = user.ProteinGoal - e.JournalEntries.Sum(x => x.Proteins),
+                                PlusOrMinusFats = user.FatGoal - e.JournalEntries.Sum(x => x.Fats)
                             }) ;
                 return query.ToArray();
             }
@@ -43,6 +48,7 @@ namespace MacrosTracker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var user = ctx.Users.Find(_userId.ToString());
                 var entity =
                     ctx
                         .Days
@@ -56,7 +62,11 @@ namespace MacrosTracker.Services
                         DayCalories = entity.JournalEntries.Sum(x=>x.Calories),
                         DayCarbs = entity.JournalEntries.Sum(x => x.Carbs),
                         DayFats = entity.JournalEntries.Sum(x => x.Fats),
-                        DayProteins = entity.JournalEntries.Sum(x => x.Proteins)
+                        DayProteins = entity.JournalEntries.Sum(x => x.Proteins),
+                        PlusOrMinusCalories = user.DailyCalorieGoalToLoseWeight - entity.JournalEntries.Sum(x => x.Calories),
+                        PlusOrMinusCarbs = user.CarbGoal - entity.JournalEntries.Sum(x => x.Carbs),
+                        PlusOrMinusProteins = user.ProteinGoal - entity.JournalEntries.Sum(x => x.Proteins),
+                        PlusOrMinusFats = user.FatGoal - entity.JournalEntries.Sum(x => x.Fats)
                     };
             }
         }

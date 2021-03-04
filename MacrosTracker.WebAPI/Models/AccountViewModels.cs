@@ -36,6 +36,10 @@ namespace MacrosTracker.WebAPI.Models
         public int Height { get; set; }
         public int Age { get; set; }
         public string MaleOrFemale { get; set; }
+        public double CarbGoal { get; set; }
+        public double ProteinGoal { get; set; }
+        public double FatGoal { get; set; }
+        public double CalorieGoal { get; set; }
 
         //public List<FoodItem> MyFoods { get; set; }
 
