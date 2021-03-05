@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MacrosTracker.Enum.MealCategoryEnum;
 
 namespace MacrosTracker.Models
 {
@@ -11,11 +12,7 @@ namespace MacrosTracker.Models
     {
         public int MealId { get; set; }
         public string MealName { get; set; }
-        public string Category { get; set; }
-       
-
-        
+        public TypeofMealCategory Category { get; set; }       
         public List<int> ListOfFoodIds { get; set; } = new List<int>();
-
     }
 }

@@ -73,6 +73,10 @@
       <Project>{d7fec447-9ad5-472d-be77-160876365224}</Project>
       <Name>MacrosTracker.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MacrosTracker.Enum\MacrosTracker.Enum.csproj">
+      <Project>{5df58dd0-88aa-4c0b-ba6e-d8fc7bbed3e4}</Project>
+      <Name>MacrosTracker.Enum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MacrosTracker.Models\MacrosTracker.Models.csproj">
       <Project>{bc63d59a-8c3f-41f3-8181-02ce0bfa854e}</Project>
       <Name>MacrosTracker.Models</Name>
