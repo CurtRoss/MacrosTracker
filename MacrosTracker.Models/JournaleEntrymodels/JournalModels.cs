@@ -14,6 +14,7 @@ namespace MacrosTracker.Models.JournaleEntrymodels
         public DateTime JournalDate { get; set; }
         public List<int> MealList { get; set; }
         public List<int> FoodList { get; set; }
+        public List<int> RecipeList { get; set; } 
     }
 
     public class JournalEntryDetail
@@ -33,6 +34,7 @@ namespace MacrosTracker.Models.JournaleEntrymodels
         public DateTime JournalDate { get; set; }
         public List<int> MealList { get; set; } = new List<int>();
         public List<int> FoodList { get; set; } = new List<int>();
+        public List<int> RecipeList { get; set; } = new List<int>();
     }
 
 }

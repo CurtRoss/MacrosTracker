@@ -72,17 +72,17 @@ namespace MacrosTracker.Services
                         .Recipes
                         .Single(e => e.RecipeId == id && e.UserId == _userId);
 
+                //Build out list of Foods to display in recipedetail.
+                var foodNameList = new List<string>();
+                var foodItemList = new List<FoodItem>();
 
-                
-               
-              
-
-                //Build out list of Foods to display in mealdetail.
-                var foodList = new List<string>();
                 foreach (int i in entity.ListOfFoodIds)
                 {
-                    foodList.Add(ctx.FoodItems.Find(i).FoodName);
+                    foodNameList.Add(ctx.FoodItems.Find(i).FoodName);
+                    entity.ListOfFoods.Add(ctx.FoodItems.Find(i));
                 }
+
+
 
                 return
                     new RecipeDetail
@@ -94,7 +94,7 @@ namespace MacrosTracker.Services
                         Carbs = entity.Carbs,
                         Calories = entity.Calories,
                         CreatedUtc = entity.CreatedUtc,
-                        //ListOfFoodIds = foodId;
+                        ListOfFoodNames = foodNameList
                     };
             }
         }

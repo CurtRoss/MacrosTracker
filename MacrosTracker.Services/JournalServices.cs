@@ -27,6 +27,7 @@ namespace MacrosTracker.Services
                     UserId = _userId,
                     FoodList = model.FoodList,
                     MealList = model.MealList,
+                    RecipeList = model.RecipeList,
                     TimeStamp = model.JournalDate,
 
                 };
@@ -60,6 +61,20 @@ namespace MacrosTracker.Services
                         protein += ctx.DailyMeals.Find(i).Protein;
                         fats += ctx.DailyMeals.Find(i).Fat;
                         calories += ctx.DailyMeals.Find(i).Calories;
+                    }
+                }
+            }
+
+            if (model.RecipeList != null)
+            {
+                foreach (int i in model.RecipeList)
+                {
+                    using (var ctx = new ApplicationDbContext())
+                    {
+                        carbs += ctx.Recipes.Find(i).Carbs;
+                        protein += ctx.Recipes.Find(i).Protein;
+                        fats += ctx.Recipes.Find(i).Fat;
+                        calories += ctx.Recipes.Find(i).Calories;
                     }
                 }
             }
@@ -100,7 +115,6 @@ namespace MacrosTracker.Services
                         entity.DayId = newDayEntity.DayId;
 
                         //add journal entry to list of journal entries in day
-                        
                         newDayEntity.JournalEntries.Add(entity);
                         ctx.JournalEntries.Add(entity);
                         return ctx.SaveChanges() > 0;
@@ -175,6 +189,7 @@ namespace MacrosTracker.Services
                 entity.TimeStamp = model.JournalDate;
                 entity.MealList = model.MealList;
                 entity.FoodList = model.FoodList;
+                entity.RecipeList = model.RecipeList;
 
                 double carbs = 0;
                 double protein = 0;
@@ -205,6 +220,20 @@ namespace MacrosTracker.Services
                             protein += ctx2.DailyMeals.Find(i).Protein;
                             fats += ctx2.DailyMeals.Find(i).Fat;
                             calories += ctx2.DailyMeals.Find(i).Calories;
+                        }
+                    }
+                }
+
+                if (model.RecipeList != null)
+                {
+                    foreach (int i in model.RecipeList)
+                    {
+                        using (var ctx2 = new ApplicationDbContext())
+                        {
+                            carbs += ctx2.Recipes.Find(i).Carbs;
+                            protein += ctx2.Recipes.Find(i).Protein;
+                            fats += ctx2.Recipes.Find(i).Fat;
+                            calories += ctx2.Recipes.Find(i).Calories;
                         }
                     }
                 }
