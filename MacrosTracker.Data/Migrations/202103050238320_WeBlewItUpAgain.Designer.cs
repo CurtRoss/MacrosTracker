@@ -7,13 +7,13 @@ namespace MacrosTracker.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddedCategories : IMigrationMetadata
+    public sealed partial class WeBlewItUpAgain : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedCategories));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(WeBlewItUpAgain));
         
         string IMigrationMetadata.Id
         {
-            get { return "202103042352277_AddedCategories"; }
+            get { return "202103050238320_WeBlewItUpAgain"; }
         }
         
         string IMigrationMetadata.Source
