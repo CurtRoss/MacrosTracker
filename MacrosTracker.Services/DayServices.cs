@@ -31,14 +31,14 @@ namespace MacrosTracker.Services
                             {
                                 DayId = e.DayId,
                                 Date = e.DateOfEntry,
-                                DayCarbs = e.JournalEntries.Sum(x=>x.Carbs),
-                                DayFats = e.JournalEntries.Sum(x=>x.Fats),
-                                DayProteins = e.JournalEntries.Sum(x=>x.Proteins),
-                                DayCalories = e.JournalEntries.Sum(x=>x.Calories),
-                                PlusOrMinusCalories = user.DailyCalorieGoalToLoseWeight - e.JournalEntries.Sum(x => x.Calories),
-                                PlusOrMinusCarbs = user.CarbGoal - e.JournalEntries.Sum(x => x.Carbs),
-                                PlusOrMinusProteins = user.ProteinGoal - e.JournalEntries.Sum(x => x.Proteins),
-                                PlusOrMinusFats = user.FatGoal - e.JournalEntries.Sum(x => x.Fats)
+                                DayCarbs = (int)e.JournalEntries.Sum(x=>x.Carbs),
+                                DayFats = (int)e.JournalEntries.Sum(x=>x.Fats),
+                                DayProteins = (int)e.JournalEntries.Sum(x=>x.Proteins),
+                                DayCalories = (int)e.JournalEntries.Sum(x=>x.Calories),
+                                PlusOrMinusCalories = (int)user.DailyCalorieGoalToLoseWeight - (int)e.JournalEntries.Sum(x => x.Calories),
+                                PlusOrMinusCarbs = (int)user.CarbGoal - (int)e.JournalEntries.Sum(x => x.Carbs),
+                                PlusOrMinusProteins = (int)user.ProteinGoal - (int)e.JournalEntries.Sum(x => x.Proteins),
+                                PlusOrMinusFats = (int)user.FatGoal - (int)e.JournalEntries.Sum(x => x.Fats)
                             }) ;
                 return query.ToArray();
             }
@@ -59,14 +59,14 @@ namespace MacrosTracker.Services
                     {
                         DayId = entity.DayId,
                         Date = entity.DateOfEntry,
-                        DayCalories = entity.JournalEntries.Sum(x=>x.Calories),
-                        DayCarbs = entity.JournalEntries.Sum(x => x.Carbs),
-                        DayFats = entity.JournalEntries.Sum(x => x.Fats),
-                        DayProteins = entity.JournalEntries.Sum(x => x.Proteins),
-                        PlusOrMinusCalories = user.DailyCalorieGoalToLoseWeight - entity.JournalEntries.Sum(x => x.Calories),
-                        PlusOrMinusCarbs = user.CarbGoal - entity.JournalEntries.Sum(x => x.Carbs),
-                        PlusOrMinusProteins = user.ProteinGoal - entity.JournalEntries.Sum(x => x.Proteins),
-                        PlusOrMinusFats = user.FatGoal - entity.JournalEntries.Sum(x => x.Fats)
+                        DayCalories = (int)entity.JournalEntries.Sum(x=>x.Calories),
+                        DayCarbs = (int)entity.JournalEntries.Sum(x => x.Carbs),
+                        DayFats = (int)entity.JournalEntries.Sum(x => x.Fats),
+                        DayProteins = (int)entity.JournalEntries.Sum(x => x.Proteins),
+                        PlusOrMinusCalories = (int)user.DailyCalorieGoalToLoseWeight - (int)entity.JournalEntries.Sum(x => x.Calories),
+                        PlusOrMinusCarbs = (int)user.CarbGoal - (int)entity.JournalEntries.Sum(x => x.Carbs),
+                        PlusOrMinusProteins = (int)user.ProteinGoal - (int)entity.JournalEntries.Sum(x => x.Proteins),
+                        PlusOrMinusFats = (int)user.FatGoal - (int)entity.JournalEntries.Sum(x => x.Fats)
                     };
             }
         }

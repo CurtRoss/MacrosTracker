@@ -21,6 +21,7 @@ namespace MacrosTracker.Data
         public Guid UserId { get; set; }
         public List<int> MealList { get; set; } = new List<int>();
         public List<int> FoodList { get; set; } = new List<int>();
+        public List<int> RecipeList { get; set; } = new List<int>();
 
         [Required]
         public DateTime TimeStamp { get; set; }

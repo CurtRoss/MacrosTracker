@@ -16,9 +16,8 @@ namespace MacrosTracker.Models
         public double Fat { get; set; }
         public double Carbs { get; set; }
         public double Calories { get; set; }
-        public virtual List<FoodItem> ListOfFoods { get; set; }
+        public List<string> ListOfFoodNames { get; set; } = new List<string>();
 
-        public List<int> ListOfFoodIds { get; set; }
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
