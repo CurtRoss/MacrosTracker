@@ -39,9 +39,8 @@ namespace MacrosTracker.Services
                 ctx.Recipes.Add(entity);
                 return ctx.SaveChanges() > 0;
             }
-
-
         }
+
         //Get
         public IEnumerable<RecipeListItem> GetRecipe()
         {
@@ -71,11 +70,6 @@ namespace MacrosTracker.Services
                     ctx
                         .Recipes
                         .Single(e => e.RecipeId == id && e.UserId == _userId);
-
-
-                
-               
-              
 
                 //Build out list of Foods to display in mealdetail.
                 var foodList = new List<string>();
@@ -108,13 +102,8 @@ namespace MacrosTracker.Services
                         .Recipes
                         .Single(e => e.RecipeId == model.RecipeId && e.UserId == _userId);
 
-              
-
-               
-
                 entity.RecipeName = model.RecipeName;
                 entity.ListOfFoodIds = model.ListOfFoodIds;
-                
 
                 return ctx.SaveChanges() > 0;
             }
@@ -129,13 +118,10 @@ namespace MacrosTracker.Services
                         .Recipes
                         .Single(e => e.RecipeId == recipeId && e.UserId == _userId);
 
-               
                 ctx.Recipes.Remove(entity);
 
                 return ctx.SaveChanges() > 0;
             }
         }
-
-      
     }
 }

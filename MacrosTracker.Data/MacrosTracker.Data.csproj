@@ -113,6 +113,10 @@
     <Compile Include="Migrations\202103030249413_ChangedDay.designer.cs">
       <DependentUpon>202103030249413_ChangedDay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103042352277_AddedCategories.cs" />
+    <Compile Include="Migrations\202103042352277_AddedCategories.designer.cs">
+      <DependentUpon>202103042352277_AddedCategories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
@@ -137,6 +141,15 @@
     <EmbeddedResource Include="Migrations\202103030249413_ChangedDay.resx">
       <DependentUpon>202103030249413_ChangedDay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103042352277_AddedCategories.resx">
+      <DependentUpon>202103042352277_AddedCategories.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MacrosTracker.Enum\MacrosTracker.Enum.csproj">
+      <Project>{5df58dd0-88aa-4c0b-ba6e-d8fc7bbed3e4}</Project>
+      <Name>MacrosTracker.Enum</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
