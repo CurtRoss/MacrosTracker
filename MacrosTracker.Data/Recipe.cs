@@ -23,12 +23,12 @@ namespace MacrosTracker.Data
         public List<int> ListOfFoodIds { get; set; } = new List<int>();
 
         public virtual List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
+        //public int HowManyServings { get; set; }
 
         public double Protein
         {
             get
             {
-
                 var protein = ListOfFoods.Sum(e => e.Protein);
                 return protein;
             }
@@ -41,7 +41,6 @@ namespace MacrosTracker.Data
             {
                 var fat = ListOfFoods.Sum(e => e.Fat);
                 return fat;
-
             }
         }
 
@@ -49,7 +48,6 @@ namespace MacrosTracker.Data
         {
             get
             {
-
                 var carbs = ListOfFoods.Sum(e => e.Carbs);
                 return carbs;
             }
@@ -59,7 +57,6 @@ namespace MacrosTracker.Data
         {
             get
             {
-
                 var calories = ListOfFoods.Sum(e => e.Calories);
                 return calories;
             }
