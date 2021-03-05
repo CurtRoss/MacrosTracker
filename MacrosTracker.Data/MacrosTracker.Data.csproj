@@ -93,29 +93,9 @@
     <Compile Include="FoodMeal.cs" />
     <Compile Include="Meal.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202102240027338_NewInitialMigration.cs" />
-    <Compile Include="Migrations\202102240027338_NewInitialMigration.designer.cs">
-      <DependentUpon>202102240027338_NewInitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102260003386_NewJournalAndDayClasses.cs" />
-    <Compile Include="Migrations\202102260003386_NewJournalAndDayClasses.designer.cs">
-      <DependentUpon>202102260003386_NewJournalAndDayClasses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103020202432_JournalEntryAndDayTests.cs" />
-    <Compile Include="Migrations\202103020202432_JournalEntryAndDayTests.designer.cs">
-      <DependentUpon>202103020202432_JournalEntryAndDayTests.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103022310167_AddingRecipes.cs" />
-    <Compile Include="Migrations\202103022310167_AddingRecipes.designer.cs">
-      <DependentUpon>202103022310167_AddingRecipes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103030249413_ChangedDay.cs" />
-    <Compile Include="Migrations\202103030249413_ChangedDay.designer.cs">
-      <DependentUpon>202103030249413_ChangedDay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103042352277_AddedCategories.cs" />
-    <Compile Include="Migrations\202103042352277_AddedCategories.designer.cs">
-      <DependentUpon>202103042352277_AddedCategories.cs</DependentUpon>
+    <Compile Include="Migrations\202103050238320_WeBlewItUpAgain.cs" />
+    <Compile Include="Migrations\202103050238320_WeBlewItUpAgain.designer.cs">
+      <DependentUpon>202103050238320_WeBlewItUpAgain.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,30 +106,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102240027338_NewInitialMigration.resx">
-      <DependentUpon>202102240027338_NewInitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102260003386_NewJournalAndDayClasses.resx">
-      <DependentUpon>202102260003386_NewJournalAndDayClasses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103020202432_JournalEntryAndDayTests.resx">
-      <DependentUpon>202103020202432_JournalEntryAndDayTests.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103022310167_AddingRecipes.resx">
-      <DependentUpon>202103022310167_AddingRecipes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103030249413_ChangedDay.resx">
-      <DependentUpon>202103030249413_ChangedDay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103042352277_AddedCategories.resx">
-      <DependentUpon>202103042352277_AddedCategories.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MacrosTracker.Enum\MacrosTracker.Enum.csproj">
       <Project>{5df58dd0-88aa-4c0b-ba6e-d8fc7bbed3e4}</Project>
       <Name>MacrosTracker.Enum</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202103050238320_WeBlewItUpAgain.resx">
+      <DependentUpon>202103050238320_WeBlewItUpAgain.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
