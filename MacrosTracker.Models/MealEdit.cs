@@ -13,6 +13,7 @@ namespace MacrosTracker.Models
     {
         [Required]
         public int MealId { get; set; }
+
         public string MealName { get; set; }
         public TypeofMealCategory Category { get; set; }       
         public List<int> ListOfFoodIds { get; set; } = new List<int>();

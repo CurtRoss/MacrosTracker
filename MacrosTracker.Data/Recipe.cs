@@ -11,11 +11,14 @@ namespace MacrosTracker.Data
     {
         [Key]
         public int RecipeId { get; set; }
+
         [Required]
         public Guid UserId { get; set; }
+
         [Required]
         [MaxLength(50, ErrorMessage = "Recipe Name limited to 50 characters.")]
         public string RecipeName { get; set; }
+
         public DateTimeOffset CreatedUtc { get; set; }
         public List<int> ListOfFoodIds { get; set; } = new List<int>();
         public virtual List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
