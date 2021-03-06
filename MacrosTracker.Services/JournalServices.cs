@@ -71,10 +71,10 @@ namespace MacrosTracker.Services
                 {
                     using (var ctx = new ApplicationDbContext())
                     {
-                        carbs += ctx.Recipes.Find(i).Carbs;
-                        protein += ctx.Recipes.Find(i).Protein;
-                        fats += ctx.Recipes.Find(i).Fat;
-                        calories += ctx.Recipes.Find(i).Calories;
+                        carbs += ctx.Recipes.Find(i).Carbs / ctx.Recipes.Find(i).HowManyPortions;
+                        protein += ctx.Recipes.Find(i).Protein / ctx.Recipes.Find(i).HowManyPortions;
+                        fats += ctx.Recipes.Find(i).Fat / ctx.Recipes.Find(i).HowManyPortions;
+                        calories += ctx.Recipes.Find(i).Calories / ctx.Recipes.Find(i).HowManyPortions;
                     }
                 }
             }
@@ -230,10 +230,10 @@ namespace MacrosTracker.Services
                     {
                         using (var ctx2 = new ApplicationDbContext())
                         {
-                            carbs += ctx2.Recipes.Find(i).Carbs;
-                            protein += ctx2.Recipes.Find(i).Protein;
-                            fats += ctx2.Recipes.Find(i).Fat;
-                            calories += ctx2.Recipes.Find(i).Calories;
+                            carbs += ctx2.Recipes.Find(i).Carbs / ctx2.Recipes.Find(i).HowManyPortions;
+                            protein += ctx2.Recipes.Find(i).Protein / ctx2.Recipes.Find(i).HowManyPortions;
+                            fats += ctx2.Recipes.Find(i).Fat / ctx2.Recipes.Find(i).HowManyPortions;
+                            calories += ctx2.Recipes.Find(i).Calories / ctx2.Recipes.Find(i).HowManyPortions;
                         }
                     }
                 }
@@ -264,19 +264,18 @@ namespace MacrosTracker.Services
 
                     //save new day
                     ctx.Days.Add(newDayEntity);
-                    var didItWork = ctx.SaveChanges();
 
-                    //add the new dayID to our journal entry and add to the database.
-                    if (didItWork > 0)
-                    {
-                        entity.DayId = newDayEntity.DayId;
-                        ctx.JournalEntries.Add(entity);
-                        return ctx.SaveChanges() > 0;
-                    }
+
+
+                    entity.DayId = newDayEntity.DayId;
+
+                    return ctx.SaveChanges() > 0;
+
                 }
                 //If the day exists, make the journal entrys dayId the existing day ID
-                entity.DayId = ctx.Days.Find(entity.DayId).DayId;
-                ctx.JournalEntries.Add(entity);
+
+                entity.DayId = dayEntity.DayId;
+
                 return ctx.SaveChanges() > 0;
             }
         }
