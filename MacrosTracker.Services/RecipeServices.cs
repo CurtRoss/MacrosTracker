@@ -41,7 +41,6 @@ namespace MacrosTracker.Services
             }
         }
 
-        //Get
         public IEnumerable<RecipeListItem> GetRecipe()
         {
             using (var ctx = new ApplicationDbContext())
@@ -71,19 +70,14 @@ namespace MacrosTracker.Services
                         .Recipes
                         .Single(e => e.RecipeId == id && e.UserId == _userId);
 
-
-                //Build out list of Foods to display in recipedetail.
                 var foodNameList = new List<string>();
                 var foodItemList = new List<FoodItem>();
-
 
                 foreach (int i in entity.ListOfFoodIds)
                 {
                     foodNameList.Add(ctx.FoodItems.Find(i).FoodName);
                     entity.ListOfFoods.Add(ctx.FoodItems.Find(i));
                 }
-
-
 
                 return
                     new RecipeDetail

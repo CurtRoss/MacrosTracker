@@ -17,7 +17,7 @@ namespace MacrosTracker.Models
 
         [Required]
         public List<int> ListOfFoodIds { get; set; }
-        public List<FoodItem> ListOfFoods { get; set; } 
+        //public List<FoodItem> ListOfFoods { get; set; } zero references
         public TypeofMealCategory Category { get; set; }
     }
 }

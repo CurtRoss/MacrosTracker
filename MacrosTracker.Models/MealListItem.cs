@@ -14,7 +14,7 @@ namespace MacrosTracker.Models
         public string MealName { get; set; }
         public TypeofMealCategory Category { get; set; }
 
-        [Display(Name ="Created")]
+        [Display(Name = "Created Date")]
         public DateTimeOffset CreatedUtc { get; set; }
     }
 }

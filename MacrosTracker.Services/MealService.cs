@@ -27,7 +27,7 @@ namespace MacrosTracker.Services
                     MealName = model.MealName,
                     Category = model.Category,
                     ListOfFoodIds = model.ListOfFoodIds,
-                    CreatedUtc = DateTimeOffset.Now
+                    CreatedUtc = DateTimeOffset.Now.Date
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -158,7 +158,7 @@ namespace MacrosTracker.Services
                 entity.MealName = model.MealName;
                 entity.Category = model.Category;
                 entity.ListOfFoodIds = model.ListOfFoodIds;
-                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow.Date;
 
                 return ctx.SaveChanges() > 0;
             }
@@ -185,7 +185,6 @@ namespace MacrosTracker.Services
             }
         }
 
-        //Helper Method
         public IEnumerable<FoodMealListItem> GetFoodMealsByMealId(int id)
         {
             using (var ctx = new ApplicationDbContext())

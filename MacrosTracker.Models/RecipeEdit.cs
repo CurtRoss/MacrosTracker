@@ -10,7 +10,6 @@ namespace MacrosTracker.Models
     {
         public int RecipeId { get; set; }
         public string RecipeName { get; set; }
-
         public List<int> ListOfFoodIds { get; set; } = new List<int>();
     }
 }

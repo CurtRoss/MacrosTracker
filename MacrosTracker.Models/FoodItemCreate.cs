@@ -17,8 +17,6 @@ namespace MacrosTracker.Models
         public double Protein { get; set; }
         public double Fat { get; set; }
         public double Carbs { get; set; }
-        public double Calories { get; set; }
-
-
+        public double Calories { get; set; }// zero references -- look at removing
     }
 }
