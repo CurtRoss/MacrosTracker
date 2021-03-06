@@ -264,7 +264,7 @@ namespace MacrosTracker.Services
                     entity.DayId = newDayEntity.DayId;
                     return ctx.SaveChanges() > 0;
                 }
-                //If the day exists, make the journal entrys dayId the existing day ID
+                //If the day exists, make the journal entrys dayId the existing day ID.
                 entity.DayId = dayEntity.DayId;
                 return ctx.SaveChanges() > 0;
             }
