@@ -43,7 +43,7 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpGet, Route("api/GetJournal")]
+        [HttpGet, Route("api/GetJournal/{id}")]
         public IHttpActionResult Get(int id)
         {
             JournalServices journalService = CreateJournalService();
@@ -51,6 +51,7 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(journalEntry);
         }
 
+        [HttpPut]
         public IHttpActionResult Put(JournalEntryEdit journal)
         {
             if (!ModelState.IsValid)
@@ -64,6 +65,7 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok();
         }
 
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             var service = CreateJournalService();

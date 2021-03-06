@@ -242,14 +242,12 @@ namespace MacrosTracker.Services
                 entity.Fats = fats;
                 entity.Calories = calories;
 
-
                 var dayEntity =
                     ctx
                         .Days
                         .Where(e => e.UserId.Equals(_userId))
                         .ToList()
                         .SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
-
 
                 //If there is no day object for the date of the journal entry, create a day and give the journal entries dayID the new DayID
                 if (dayEntity == null)
