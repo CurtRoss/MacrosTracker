@@ -73,6 +73,7 @@ namespace MacrosTracker.Services
                 var foodNameList = new List<string>();
                 var foodItemList = new List<FoodItem>();
 
+                //Need Junction Table or FK relationship to populate list of foods here.
                 foreach (int i in entity.ListOfFoodIds)
                 {
                     foodNameList.Add(ctx.FoodItems.Find(i).FoodName);

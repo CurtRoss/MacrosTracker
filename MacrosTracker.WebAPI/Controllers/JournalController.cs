@@ -29,7 +29,7 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(journals);
         }
 
-        [HttpPost, Route("api/PostJournal")]
+        [HttpPost]
         public IHttpActionResult Post(JournalEntryCreate journal)
         {
             if (!ModelState.IsValid)
