@@ -75,3 +75,5 @@ From the Web API Help Page select DELETE api/Meal/{id} from the Meal section.  U
 Authored by Charles Lucas, Curt Reigelsperger, and Lindsey Robertson.
 
 ## License
+
+[MIT](https://github.com/CurtRoss/MacrosTracker/blob/main/license.txt)
