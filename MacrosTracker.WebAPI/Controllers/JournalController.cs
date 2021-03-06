@@ -14,7 +14,7 @@ namespace MacrosTracker.WebAPI.Controllers
     [Authorize]
     public class JournalController : ApiController
     {
-        public JournalServices CreateJournalService()
+        private JournalServices CreateJournalService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var journalService = new JournalServices(userId);
@@ -29,7 +29,7 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(journals);
         }
 
-        [HttpPost, Route("api/PostJournal")]
+        [HttpPost]
         public IHttpActionResult Post(JournalEntryCreate journal)
         {
             if (!ModelState.IsValid)

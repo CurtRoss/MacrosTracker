@@ -18,7 +18,7 @@ namespace MacrosTracker.Models
         public double Fat { get; set; }
         public double Carbs { get; set; }
         public double Calories { get; set; }
-        //public List<int> ListOfFoodIds { get; set; } --- there were no references
+       
         public List<string> ListOfFoodNames { get; set; } = new List<string>();
 
         [Display(Name = "Created Date")]
