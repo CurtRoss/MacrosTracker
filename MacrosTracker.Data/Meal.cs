@@ -14,8 +14,6 @@ namespace MacrosTracker.Data
         [Key]
         public int MealId { get; set; }
 
-        public int FoodId { get; set; }
-
         [Required]
         public Guid UserId { get; set; }
 
