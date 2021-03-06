@@ -43,7 +43,7 @@ namespace MacrosTracker.Data
         public virtual List<Meal> ListOfMeals { get; set; } = new List<Meal>();
         public virtual List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
 
-        public int DailyCalorieGoalToLoseWeight
+        public double DailyCalorieGoalToLoseWeight
         {
             get
             {
@@ -56,12 +56,32 @@ namespace MacrosTracker.Data
                 return (int)femaleGoal;
             }
         }
-        //public List<Recipe> MyRecipes { get; set; }
-        //public List<Food> UsersFoods { get; set; }
-        //public List<DailyMeal> UsersMeals { get; set; }
 
+        public double ProteinGoal
+        {
+            get
+            {
+                var proteinGoal = (DailyCalorieGoalToLoseWeight * .45) / 4;
+                return proteinGoal;
+            }
+        }
 
-
+        public double CarbGoal
+        {
+            get
+            {
+                var carbGoal = (DailyCalorieGoalToLoseWeight * .2) / 4;
+                return carbGoal;
+            }
+        }
+        public double FatGoal
+        {
+            get
+            {
+                var fatGoal = (DailyCalorieGoalToLoseWeight * .35) / 9;
+                return fatGoal;
+            }
+        }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -75,8 +95,6 @@ namespace MacrosTracker.Data
         {
             return new ApplicationDbContext();
         }
-
-
 
 
         public DbSet<FoodItem> FoodItems { get; set; }
@@ -120,8 +138,6 @@ namespace MacrosTracker.Data
         }
 
         //protected override void OnModelCreating2(ModelBuilder modelBuilder)
-
-        
 
         public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
         {

@@ -7,24 +7,20 @@ using System.Threading.Tasks;
 
 namespace MacrosTracker.Models.DayModels
 {
-    public class DayCreate
-    {
-        [Required]
-        public DateTime Date { get; set; }
-    }
-
     public class DayDetail
     {
         public int DayId { get; set; }
+      
+        [Display(Name = "Journal Date")]
         public DateTime Date { get; set; }
-        public double DayCarbs { get; set; }
-       
-        public double DayProteins { get; set; }
-        public double DayFats { get; set; }
-        public double DayCalories { get; set; }
-    }
-    public class SpecificDayDetail : DayDetail
-    {
-        public List<string> DayFoods { get; set; }
+      
+        public int? DayCarbs { get; set; }
+        public int? DayProteins { get; set; }
+        public int? DayFats { get; set; }
+        public int? DayCalories { get; set; }
+        public int? PlusOrMinusCalories { get; set; }
+        public int? PlusOrMinusCarbs { get; set; }
+        public int? PlusOrMinusProteins { get; set; }
+        public int? PlusOrMinusFats { get; set; }
     }
 }

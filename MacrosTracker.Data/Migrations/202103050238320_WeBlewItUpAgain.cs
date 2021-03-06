@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class NewInitialMigration : DbMigration
+    public partial class WeBlewItUpAgain : DbMigration
     {
         public override void Up()
         {
@@ -15,7 +15,7 @@
                         FoodId = c.Int(nullable: false),
                         UserId = c.Guid(nullable: false),
                         MealName = c.String(nullable: false, maxLength: 50),
-                        Category = c.String(),
+                        Category = c.Int(nullable: false),
                         CreatedUtc = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedUtc = c.DateTimeOffset(nullable: false, precision: 7),
                         ApplicationUser_Id = c.String(maxLength: 128),
@@ -37,11 +37,41 @@
                         UserId = c.Guid(nullable: false),
                         CreatedUtc = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedUtc = c.DateTimeOffset(precision: 7),
+                        Recipe_RecipeId = c.Int(),
                         ApplicationUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.FoodId)
+                .ForeignKey("dbo.Recipe", t => t.Recipe_RecipeId)
                 .ForeignKey("dbo.ApplicationUser", t => t.ApplicationUser_Id)
+                .Index(t => t.Recipe_RecipeId)
                 .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
+                "dbo.Day",
+                c => new
+                    {
+                        DayId = c.Int(nullable: false, identity: true),
+                        DateOfEntry = c.DateTime(nullable: false),
+                        UserId = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.DayId);
+            
+            CreateTable(
+                "dbo.JournalEntry",
+                c => new
+                    {
+                        JournalEntryId = c.Int(nullable: false, identity: true),
+                        DayId = c.Int(nullable: false),
+                        UserId = c.Guid(nullable: false),
+                        TimeStamp = c.DateTime(nullable: false),
+                        Calories = c.Double(nullable: false),
+                        Carbs = c.Double(nullable: false),
+                        Proteins = c.Double(nullable: false),
+                        Fats = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.JournalEntryId)
+                .ForeignKey("dbo.Day", t => t.DayId, cascadeDelete: true)
+                .Index(t => t.DayId);
             
             CreateTable(
                 "dbo.FoodMeal",
@@ -55,6 +85,17 @@
                 .ForeignKey("dbo.Meal", t => t.MealId, cascadeDelete: true)
                 .Index(t => t.MealId)
                 .Index(t => t.FoodId);
+            
+            CreateTable(
+                "dbo.Recipe",
+                c => new
+                    {
+                        RecipeId = c.Int(nullable: false, identity: true),
+                        UserId = c.Guid(nullable: false),
+                        RecipeName = c.String(nullable: false, maxLength: 50),
+                        CreatedUtc = c.DateTimeOffset(nullable: false, precision: 7),
+                    })
+                .PrimaryKey(t => t.RecipeId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -153,8 +194,10 @@
             DropForeignKey("dbo.FoodItem", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
+            DropForeignKey("dbo.FoodItem", "Recipe_RecipeId", "dbo.Recipe");
             DropForeignKey("dbo.FoodMeal", "MealId", "dbo.Meal");
             DropForeignKey("dbo.FoodMeal", "FoodId", "dbo.FoodItem");
+            DropForeignKey("dbo.JournalEntry", "DayId", "dbo.Day");
             DropForeignKey("dbo.FoodItemMeal", "Meal_MealId", "dbo.Meal");
             DropForeignKey("dbo.FoodItemMeal", "FoodItem_FoodId", "dbo.FoodItem");
             DropIndex("dbo.FoodItemMeal", new[] { "Meal_MealId" });
@@ -165,7 +208,9 @@
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
             DropIndex("dbo.FoodMeal", new[] { "FoodId" });
             DropIndex("dbo.FoodMeal", new[] { "MealId" });
+            DropIndex("dbo.JournalEntry", new[] { "DayId" });
             DropIndex("dbo.FoodItem", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.FoodItem", new[] { "Recipe_RecipeId" });
             DropIndex("dbo.Meal", new[] { "ApplicationUser_Id" });
             DropTable("dbo.FoodItemMeal");
             DropTable("dbo.IdentityUserLogin");
@@ -173,7 +218,10 @@
             DropTable("dbo.ApplicationUser");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
+            DropTable("dbo.Recipe");
             DropTable("dbo.FoodMeal");
+            DropTable("dbo.JournalEntry");
+            DropTable("dbo.Day");
             DropTable("dbo.FoodItem");
             DropTable("dbo.Meal");
         }

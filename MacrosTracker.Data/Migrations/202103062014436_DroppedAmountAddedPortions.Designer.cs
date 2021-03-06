@@ -7,13 +7,13 @@ namespace MacrosTracker.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class NewInitialMigration : IMigrationMetadata
+    public sealed partial class DroppedAmountAddedPortions : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NewInitialMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DroppedAmountAddedPortions));
         
         string IMigrationMetadata.Id
         {
-            get { return "202102240027338_NewInitialMigration"; }
+            get { return "202103062014436_DroppedAmountAddedPortions"; }
         }
         
         string IMigrationMetadata.Source

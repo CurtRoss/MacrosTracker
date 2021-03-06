@@ -18,17 +18,15 @@ namespace MacrosTracker.Data
         [Required]
         [MaxLength(50, ErrorMessage = "Recipe Name limited to 50 characters.")]
         public string RecipeName { get; set; }
+
         public DateTimeOffset CreatedUtc { get; set; }
-
         public List<int> ListOfFoodIds { get; set; } = new List<int>();
-
         public virtual List<FoodItem> ListOfFoods { get; set; } = new List<FoodItem>();
-
+        public int HowManyPortions { get; set; }
         public double Protein
         {
             get
             {
-
                 var protein = ListOfFoods.Sum(e => e.Protein);
                 return protein;
             }
@@ -36,12 +34,10 @@ namespace MacrosTracker.Data
 
         public double Fat
         {
-
             get
             {
                 var fat = ListOfFoods.Sum(e => e.Fat);
                 return fat;
-
             }
         }
 
@@ -49,7 +45,6 @@ namespace MacrosTracker.Data
         {
             get
             {
-
                 var carbs = ListOfFoods.Sum(e => e.Carbs);
                 return carbs;
             }
@@ -59,7 +54,6 @@ namespace MacrosTracker.Data
         {
             get
             {
-
                 var calories = ListOfFoods.Sum(e => e.Calories);
                 return calories;
             }

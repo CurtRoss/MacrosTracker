@@ -20,13 +20,13 @@ namespace MacrosTracker.Services
 
         public bool CreateJournalEntry(JournalEntryCreate model)
         {
-
             var entity =
                 new JournalEntry()
                 {
                     UserId = _userId,
                     FoodList = model.FoodList,
                     MealList = model.MealList,
+                    RecipeList = model.RecipeList,
                     TimeStamp = model.JournalDate,
 
                 };
@@ -64,6 +64,20 @@ namespace MacrosTracker.Services
                 }
             }
 
+            if (model.RecipeList != null)
+            {
+                foreach (int i in model.RecipeList)
+                {
+                    using (var ctx = new ApplicationDbContext())
+                    {
+                        carbs += ctx.Recipes.Find(i).Carbs / ctx.Recipes.Find(i).HowManyPortions;
+                        protein += ctx.Recipes.Find(i).Protein / ctx.Recipes.Find(i).HowManyPortions;
+                        fats += ctx.Recipes.Find(i).Fat / ctx.Recipes.Find(i).HowManyPortions;
+                        calories += ctx.Recipes.Find(i).Calories / ctx.Recipes.Find(i).HowManyPortions;
+                    }
+                }
+            }
+
             entity.Carbs = carbs;
             entity.Proteins = protein;
             entity.Fats = fats;
@@ -75,7 +89,6 @@ namespace MacrosTracker.Services
                 var dayEntity =
                     ctx
                         .Days
-                        //.SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
                         .Where(e => e.UserId.Equals(_userId))
                         .ToList()
                         .SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
@@ -101,7 +114,6 @@ namespace MacrosTracker.Services
                         entity.DayId = newDayEntity.DayId;
 
                         //add journal entry to list of journal entries in day
-                        
                         newDayEntity.JournalEntries.Add(entity);
                         ctx.JournalEntries.Add(entity);
                         return ctx.SaveChanges() > 0;
@@ -150,6 +162,7 @@ namespace MacrosTracker.Services
                     ctx
                         .JournalEntries
                         .Single(e => e.JournalEntryId == id && e.UserId == _userId);
+
                 return
                     new JournalEntryDetail
                     {
@@ -175,6 +188,7 @@ namespace MacrosTracker.Services
                 entity.TimeStamp = model.JournalDate;
                 entity.MealList = model.MealList;
                 entity.FoodList = model.FoodList;
+                entity.RecipeList = model.RecipeList;
 
                 double carbs = 0;
                 double protein = 0;
@@ -209,17 +223,31 @@ namespace MacrosTracker.Services
                     }
                 }
 
+                if (model.RecipeList != null)
+                {
+                    foreach (int i in model.RecipeList)
+                    {
+                        using (var ctx2 = new ApplicationDbContext())
+                        {
+                            carbs += ctx2.Recipes.Find(i).Carbs / ctx2.Recipes.Find(i).HowManyPortions;
+                            protein += ctx2.Recipes.Find(i).Protein / ctx2.Recipes.Find(i).HowManyPortions;
+                            fats += ctx2.Recipes.Find(i).Fat / ctx2.Recipes.Find(i).HowManyPortions;
+                            calories += ctx2.Recipes.Find(i).Calories / ctx2.Recipes.Find(i).HowManyPortions;
+                        }
+                    }
+                }
+
                 entity.Carbs = carbs;
                 entity.Proteins = protein;
                 entity.Fats = fats;
                 entity.Calories = calories;
 
-
                 var dayEntity =
                     ctx
                         .Days
+                        .Where(e => e.UserId.Equals(_userId))
+                        .ToList()
                         .SingleOrDefault(e => e.DateOfEntry.Date == entity.TimeStamp.Date);
-
 
                 //If there is no day object for the date of the journal entry, create a day and give the journal entries dayID the new DayID
                 if (dayEntity == null)
@@ -233,19 +261,11 @@ namespace MacrosTracker.Services
 
                     //save new day
                     ctx.Days.Add(newDayEntity);
-                    var didItWork = ctx.SaveChanges();
-
-                    //add the new dayID to our journal entry and add to the database.
-                    if (didItWork > 0)
-                    {
-                        entity.DayId = newDayEntity.DayId;
-                        ctx.JournalEntries.Add(entity);
-                        return ctx.SaveChanges() > 0;
-                    }
+                    entity.DayId = newDayEntity.DayId;
+                    return ctx.SaveChanges() > 0;
                 }
                 //If the day exists, make the journal entrys dayId the existing day ID
-                entity.DayId = ctx.Days.Find(entity.DayId).DayId;
-                ctx.JournalEntries.Add(entity);
+                entity.DayId = dayEntity.DayId;
                 return ctx.SaveChanges() > 0;
             }
         }

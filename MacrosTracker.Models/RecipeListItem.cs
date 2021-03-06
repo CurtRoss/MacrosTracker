@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,9 @@ namespace MacrosTracker.Models
     {
         public int RecipeId { get; set; }
         public string RecipeName { get; set; }
+        public int Portions { get; set; }
 
+        [Display(Name = "Created Date")]
         public DateTimeOffset CreatedUtc { get; set; }
     }
 }

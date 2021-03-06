@@ -18,39 +18,6 @@ namespace MacrosTracker.Data
 
         //public virtual List<FoodItem> FoodItems { get; set; }
         //public virtual List<Meal> Meals { get; set; }
-        public double TotalFats
-        {
-            get
-            {
-                var fats = JournalEntries.Sum(e => e.Fats);
-                return fats;
-            }
-        }
-        public double TotalCarbs
-        {
-            get
-            {
-                var carbs = JournalEntries.Sum(e => e.Carbs);
-                return carbs;
-            }
-        }
-
-
-        public double TotalProteins
-        {
-            get
-            {
-                var protein = JournalEntries.Sum(e => e.Proteins);
-                return protein;
-            }
-        }
-        public double TotalCalories
-        {
-            get
-            {
-                var calories = JournalEntries.Sum(e => e.Calories);
-                return calories;
-            }
-        }
+       
     }
 }

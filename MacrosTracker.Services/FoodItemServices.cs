@@ -24,19 +24,16 @@ namespace MacrosTracker.Services
                  {
 
                      UserId = _userId,
-                     Amount = model.Amount,
                      FoodName = model.FoodName,
                      Protein = model.Protein,
                      Fat = model.Fat,
                      Carbs = model.Carbs,
-                     
                      CreatedUtc = DateTimeOffset.Now
                  };
 
 
             using (var ctx = new ApplicationDbContext())
             {
-                //Add food to users list of foods
                 var user = ctx.Users.Find(entity.UserId.ToString());
                 user.ListOfFoods.Add(entity);
 
@@ -63,6 +60,7 @@ namespace MacrosTracker.Services
                                    ModifiedUtc = e.ModifiedUtc,
                                }
                    );
+
                 return query.ToArray();
             }
         }
@@ -105,17 +103,14 @@ namespace MacrosTracker.Services
                         FoodId = entity.FoodId,
                         FoodName = entity.FoodName,
                         Calories = entity.Calories,
-                        Amount = entity.Amount,
                         Protein = entity.Protein,
                         Fat = entity.Fat,
                         Carbs = entity.Carbs,
-                        CreatedUtc = entity.CreatedUtc,
+                        CreatedUtc = entity.CreatedUtc.Date,
                         ModifiedUtc = entity.ModifiedUtc,
                         ListOfMealNames = mealList
                     };
             }
-
-
         }
 
         public bool UpdateFoodItem(FoodItemEdit model)
@@ -129,14 +124,11 @@ namespace MacrosTracker.Services
 
                 entity.FoodName = model.FoodName;
                 entity.FoodId = model.FoodId;
-                entity.Amount = model.Amount;
-                
                 entity.Carbs = model.Carbs;
                 entity.Protein = model.Protein;
                 entity.Fat = model.Fat;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
-
-                return ctx.SaveChanges() > 1;
+                return ctx.SaveChanges() > 0;
             }
         }
 
@@ -157,7 +149,7 @@ namespace MacrosTracker.Services
 
                 ctx.FoodItems.Remove(entity);
 
-                return ctx.SaveChanges() > 1;
+                return ctx.SaveChanges() > 0;
             }
         }
         public IEnumerable<FoodMealListItem> GetFoodMealsByFoodId(int id)
