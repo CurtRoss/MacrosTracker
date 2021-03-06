@@ -42,7 +42,6 @@ namespace MacrosTracker.Services
                         };
                     ctx.FoodMeals.Add(foodMealEntity);
                     entity.ListOfFoods.Add(ctx.FoodItems.Find(i));
-                    
                 }
                 ctx.DailyMeals.Add(entity);
                 return ctx.SaveChanges() > 0;
