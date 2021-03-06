@@ -82,9 +82,6 @@ namespace MacrosTracker.Data
                 return fatGoal;
             }
         }
-
-
-
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -98,8 +95,6 @@ namespace MacrosTracker.Data
         {
             return new ApplicationDbContext();
         }
-
-
 
 
         public DbSet<FoodItem> FoodItems { get; set; }
@@ -143,8 +138,6 @@ namespace MacrosTracker.Data
         }
 
         //protected override void OnModelCreating2(ModelBuilder modelBuilder)
-
-        
 
         public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
         {

@@ -10,7 +10,10 @@ namespace MacrosTracker.Models.DayModels
     public class DayDetail
     {
         public int DayId { get; set; }
+      
+        [Display(Name = "Journal Date")]
         public DateTime Date { get; set; }
+      
         public int? DayCarbs { get; set; }
         public int? DayProteins { get; set; }
         public int? DayFats { get; set; }

@@ -20,7 +20,6 @@ namespace MacrosTracker.Services
 
         public bool CreateJournalEntry(JournalEntryCreate model)
         {
-
             var entity =
                 new JournalEntry()
                 {

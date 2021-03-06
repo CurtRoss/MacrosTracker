@@ -62,6 +62,10 @@ From the Web API Help Page select GET api/GetMeal from the Meal section.  Using 
 
 From the Web API Help Page select GET api/Meal/{id} from the FoodItem section.  Using this endpoint in the API testing tool, change {id} to the MealId for the meal you would like to view. The will bring up the details of the selected Meal, including the MealId, MealName, Protein, Fat, Carbs, Calories, List of Food Names, Created date, and Modified date.
 
+#### View Meals By Category
+
+From the Web API Help Page select GET api/GetMealCategory/{category} from the FoodItem section.  Using this endpoint in the API testing tool, change {category} to the category for the meals you would like to view. The will bring up a list of all meals with the selected category, including the MealId, MealName, Category, and Created date.
+
 #### Delete a Meal
 
 From the Web API Help Page select DELETE api/Meal/{id} from the Meal section.  Using this endpoint in the API testing tool, change {id} to the MealId for the meal you would like to delete. 

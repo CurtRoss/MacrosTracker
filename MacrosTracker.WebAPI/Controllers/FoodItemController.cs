@@ -68,7 +68,5 @@ namespace MacrosTracker.WebAPI.Controllers
 
             return Ok();
         }
-
-
     }
 }

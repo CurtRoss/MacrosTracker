@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static MacrosTracker.Enum.MealCategoryEnum;
+using static MacrosTracker.Categories.MealCategory;
 
 namespace MacrosTracker.Models
 {
@@ -14,7 +14,7 @@ namespace MacrosTracker.Models
         public string MealName { get; set; }
         public TypeofMealCategory Category { get; set; }
 
-        [Display(Name ="Created")]
+        [Display(Name = "Created Date")]
         public DateTimeOffset CreatedUtc { get; set; }
     }
 }

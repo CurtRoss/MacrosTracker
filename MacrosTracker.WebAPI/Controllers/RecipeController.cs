@@ -72,7 +72,6 @@ namespace MacrosTracker.WebAPI.Controllers
                 return InternalServerError();
 
             return Ok();
-
         }
     }
 }

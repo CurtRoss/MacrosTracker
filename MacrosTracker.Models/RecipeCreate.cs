@@ -13,6 +13,8 @@ namespace MacrosTracker.Models
         public string RecipeName { get; set; }
         [Required]
         public List<int> ListOfFoodIds { get; set; } = new List<int>();
+
+        [Display(Name = "Created Date")]
         public DateTimeOffset CreatedUtc { get; set; }
         [Required]
         public int HowManyPortionsDoesRecipeMake { get; set; }

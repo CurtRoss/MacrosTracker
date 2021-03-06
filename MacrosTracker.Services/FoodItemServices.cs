@@ -28,14 +28,12 @@ namespace MacrosTracker.Services
                      Protein = model.Protein,
                      Fat = model.Fat,
                      Carbs = model.Carbs,
-                     
                      CreatedUtc = DateTimeOffset.Now
                  };
 
 
             using (var ctx = new ApplicationDbContext())
             {
-                //Add food to users list of foods
                 var user = ctx.Users.Find(entity.UserId.ToString());
                 user.ListOfFoods.Add(entity);
 
@@ -62,6 +60,7 @@ namespace MacrosTracker.Services
                                    ModifiedUtc = e.ModifiedUtc,
                                }
                    );
+
                 return query.ToArray();
             }
         }
@@ -112,8 +111,6 @@ namespace MacrosTracker.Services
                         ListOfMealNames = mealList
                     };
             }
-
-
         }
 
         public bool UpdateFoodItem(FoodItemEdit model)

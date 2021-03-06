@@ -23,10 +23,10 @@ namespace MacrosTracker.Models
         public double CaloriesPerServing { get; set; }
         public List<string> ListOfFoodNames { get; set; } = new List<string>();
 
-
-        [Display(Name = "Created")]
+        [Display(Name = "Created Date")]
         public DateTimeOffset CreatedUtc { get; set; }
-        [Display(Name = "Modified")]
+
+        [Display(Name = "Modified Date")]
         public DateTimeOffset ModifiedUtc { get; set; }
     }
 }

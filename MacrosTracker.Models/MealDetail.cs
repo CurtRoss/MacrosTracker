@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static MacrosTracker.Enum.MealCategoryEnum;
+using static MacrosTracker.Categories.MealCategory;
 
 namespace MacrosTracker.Models
 {
@@ -18,12 +18,13 @@ namespace MacrosTracker.Models
         public double Fat { get; set; }
         public double Carbs { get; set; }
         public double Calories { get; set; }
-        public List<int> ListOfFoodIds { get; set; }
+        //public List<int> ListOfFoodIds { get; set; } --- there were no references
         public List<string> ListOfFoodNames { get; set; } = new List<string>();
 
-        [Display(Name ="Created")]
+        [Display(Name = "Created Date")]
         public DateTimeOffset CreatedUtc { get; set; }
-        [Display(Name ="Modified")]
+
+        [Display(Name = "Modified Date")]
         public DateTimeOffset ModifiedUtc { get; set; }
     }
 }
