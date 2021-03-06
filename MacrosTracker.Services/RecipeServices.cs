@@ -25,16 +25,15 @@ namespace MacrosTracker.Services
                    UserId = _userId,
                    RecipeName = model.RecipeName,
                    ListOfFoodIds = model.ListOfFoodIds,
-                   CreatedUtc = DateTimeOffset.Now
+                   CreatedUtc = DateTimeOffset.Now,
+                   HowManyPortions = model.HowManyPortionsDoesRecipeMake
                };
 
             using (var ctx = new ApplicationDbContext())
             {
                 foreach (int i in entity.ListOfFoodIds)
                 {
-
                     entity.ListOfFoods.Add(ctx.FoodItems.Find(i));
-
                 }
                 ctx.Recipes.Add(entity);
                 return ctx.SaveChanges() > 0;
@@ -55,6 +54,7 @@ namespace MacrosTracker.Services
                             {
                                 RecipeId = e.RecipeId,
                                 RecipeName = e.RecipeName,
+                                Portions = e.HowManyPortions,
                                 CreatedUtc = e.CreatedUtc
                             });
                 return query.ToArray();
@@ -84,10 +84,15 @@ namespace MacrosTracker.Services
                     {
                         RecipeId = entity.RecipeId,
                         RecipeName = entity.RecipeName,
+                        PortionsMade = entity.HowManyPortions,
                         Protein = entity.Protein,
                         Fat = entity.Fat,
                         Carbs = entity.Carbs,
                         Calories = entity.Calories,
+                        ProteinPerServing = entity.Protein/entity.HowManyPortions,
+                        CarbsPerServing = entity.Carbs/entity.HowManyPortions,
+                        FatsPerServing = entity.Fat/entity.HowManyPortions,
+                        CaloriesPerServing = entity.Calories/entity.HowManyPortions,
                         CreatedUtc = entity.CreatedUtc,
                         ListOfFoodNames = foodNameList
                     };
@@ -104,6 +109,7 @@ namespace MacrosTracker.Services
                         .Single(e => e.RecipeId == model.RecipeId && e.UserId == _userId);
 
                 entity.RecipeName = model.RecipeName;
+                entity.HowManyPortions = model.HowManyPortionsDoesItMake;
                 entity.ListOfFoodIds = model.ListOfFoodIds;
 
                 return ctx.SaveChanges() > 0;

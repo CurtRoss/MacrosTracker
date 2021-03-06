@@ -24,7 +24,6 @@ namespace MacrosTracker.Models.JournaleEntrymodels
 
         [Display(Name = "Journal Date")]
         public DateTime JournalDate { get; set; }
-        //public List<string> FoodNames { get; set; } = new List<string>();
         public double Calories { get; set; }
         public double Proteins { get; set; }
         public double Carbs { get; set; }
@@ -33,6 +32,7 @@ namespace MacrosTracker.Models.JournaleEntrymodels
 
     public class JournalEntryEdit
     {
+        [Required]
         public int JournalEntryId { get; set; }
 
         [Display(Name = "Journal Date")]

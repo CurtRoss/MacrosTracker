@@ -11,6 +11,7 @@ namespace MacrosTracker.Models
     {
         public int RecipeId { get; set; }
         public string RecipeName { get; set; }
+        public int Portions { get; set; }
 
         [Display(Name = "Created Date")]
         public DateTimeOffset CreatedUtc { get; set; }

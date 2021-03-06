@@ -24,7 +24,6 @@ namespace MacrosTracker.Services
                  {
 
                      UserId = _userId,
-                     Amount = model.Amount,
                      FoodName = model.FoodName,
                      Protein = model.Protein,
                      Fat = model.Fat,
@@ -104,11 +103,10 @@ namespace MacrosTracker.Services
                         FoodId = entity.FoodId,
                         FoodName = entity.FoodName,
                         Calories = entity.Calories,
-                        Amount = entity.Amount,
                         Protein = entity.Protein,
                         Fat = entity.Fat,
                         Carbs = entity.Carbs,
-                        CreatedUtc = entity.CreatedUtc,
+                        CreatedUtc = entity.CreatedUtc.Date,
                         ModifiedUtc = entity.ModifiedUtc,
                         ListOfMealNames = mealList
                     };
@@ -126,13 +124,10 @@ namespace MacrosTracker.Services
 
                 entity.FoodName = model.FoodName;
                 entity.FoodId = model.FoodId;
-                entity.Amount = model.Amount;
-                
                 entity.Carbs = model.Carbs;
                 entity.Protein = model.Protein;
                 entity.Fat = model.Fat;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
-
                 return ctx.SaveChanges() > 0;
             }
         }
