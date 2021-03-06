@@ -106,15 +106,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MacrosTracker.Enum\MacrosTracker.Enum.csproj">
-      <Project>{5df58dd0-88aa-4c0b-ba6e-d8fc7bbed3e4}</Project>
-      <Name>MacrosTracker.Enum</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\202103050238320_WeBlewItUpAgain.resx">
       <DependentUpon>202103050238320_WeBlewItUpAgain.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MacrosTracker.Categories\MacrosTracker.Categories.csproj">
+      <Project>{b6cb93cb-7692-42a5-b2ff-5f8cd34c14c0}</Project>
+      <Name>MacrosTracker.Categories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

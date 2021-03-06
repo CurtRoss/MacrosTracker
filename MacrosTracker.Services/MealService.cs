@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MacrosTracker.Categories.MealCategory;
 
 namespace MacrosTracker.Services
 {
@@ -62,6 +63,28 @@ namespace MacrosTracker.Services
                             {
                                 MealId = e.MealId,
                                 MealName = e.MealName,
+                                Category = e.Category,
+                                CreatedUtc = e.CreatedUtc
+                            });
+                return query.ToArray();
+            }
+        }
+
+        public IEnumerable<MealListItem> GetMealsByCategory(TypeofMealCategory category)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .DailyMeals
+                        .Where(e => e.UserId == _userId && e.Category == category)
+                        .Select(
+                        e =>
+                            new MealListItem
+                            {
+                                MealId = e.MealId,
+                                MealName = e.MealName,
+                                Category = e.Category,
                                 CreatedUtc = e.CreatedUtc
                             });
                 return query.ToArray();
@@ -70,8 +93,6 @@ namespace MacrosTracker.Services
 
         public MealDetail GetMealById(int id)
         {
-         
-
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
@@ -79,15 +100,12 @@ namespace MacrosTracker.Services
                         .DailyMeals
                         .Single(e => e.MealId == id && e.UserId == _userId);
 
-
-                //get all foodmeals associated with meal Id
                 var foodMealList = GetFoodMealsByMealId(id);
                 foreach(FoodMealListItem foodMeal in foodMealList)
                 {
                     entity.ListOfFoodIds.Add(foodMeal.FoodId);
                 }
 
-                //Build out list of Foods to display in mealdetail.
                 var foodList = new List<string>();
                 foreach (int i in entity.ListOfFoodIds)
                 {

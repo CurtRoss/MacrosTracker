@@ -100,8 +100,6 @@ namespace MacrosTracker.Data
         }
 
 
-
-
         public DbSet<FoodItem> FoodItems { get; set; }
         public DbSet<Meal> DailyMeals { get; set; }
         public DbSet <FoodMeal> FoodMeals { get; set; }

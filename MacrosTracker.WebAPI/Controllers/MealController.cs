@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using static MacrosTracker.Categories.MealCategory;
 
 namespace MacrosTracker.WebAPI.Controllers
 {
@@ -18,15 +19,6 @@ namespace MacrosTracker.WebAPI.Controllers
             var userId = Guid.Parse(User.Identity.GetUserId());
             var mealService = new MealService(userId);
             return mealService;
-        }
-
-        [HttpGet]
-        [Route("api/GetMeal")]
-        public IHttpActionResult Get()
-        {
-            MealService mealService = CreateMealService();
-            var meals = mealService.GetMeals();
-            return Ok(meals);
         }
 
         [HttpPost]
@@ -43,12 +35,30 @@ namespace MacrosTracker.WebAPI.Controllers
 
             return Ok();
         }
-        
+
+        [HttpGet]
+        [Route("api/GetMeal")]
+        public IHttpActionResult Get()
+        {
+            MealService mealService = CreateMealService();
+            var meals = mealService.GetMeals();
+            return Ok(meals);
+        }
+
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
             MealService mealService = CreateMealService();
             var meal = mealService.GetMealById(id);
+            return Ok(meal);
+        }
+
+        [HttpGet]
+        [Route("api/GetMealCategory/{category}")]
+        public IHttpActionResult GetByCategory(TypeofMealCategory category)
+        {
+            MealService mealService = CreateMealService();
+            var meal = mealService.GetMealsByCategory(category);
             return Ok(meal);
         }
 
@@ -73,7 +83,6 @@ namespace MacrosTracker.WebAPI.Controllers
                 return InternalServerError();
 
             return Ok();
-
         }
     }
 }
