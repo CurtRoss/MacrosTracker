@@ -10,14 +10,8 @@ namespace MacrosTracker.Data
 {
     public class FoodItem
     {
-
         [Key]
         public int FoodId { get; set; }
-
-        //[ForeignKey(nameof(Meal))]
-        //public int MealId { get; set; }
-        //public virtual Meal Meal { get; set; }
-
 
         public string FoodName { get; set; }
         public double Protein { get; set; }
