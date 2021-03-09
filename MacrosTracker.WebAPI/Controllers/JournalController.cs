@@ -21,7 +21,6 @@ namespace MacrosTracker.WebAPI.Controllers
             return journalService;
         }
 
-
         /// <summary>
         /// Returns all Journal entries.
         /// </summary>
