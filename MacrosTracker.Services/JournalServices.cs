@@ -28,7 +28,6 @@ namespace MacrosTracker.Services
                     MealList = model.MealList,
                     RecipeList = model.RecipeList,
                     TimeStamp = model.JournalDate,
-
                 };
 
             double carbs = 0;
