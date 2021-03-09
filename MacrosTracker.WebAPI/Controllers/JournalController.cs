@@ -21,6 +21,10 @@ namespace MacrosTracker.WebAPI.Controllers
             return journalService;
         }
 
+        /// <summary>
+        /// Returns all Journal entries.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult Get()
         {
@@ -29,6 +33,11 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(journals);
         }
 
+        /// <summary>
+        /// Creates a new journal entry.
+        /// </summary>
+        /// <param name="journal"></param>
+        /// <returns></returns>
         [HttpPost]
         public IHttpActionResult Post(JournalEntryCreate journal)
         {
@@ -43,6 +52,11 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Displays the details for the specified Journal entry.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet, Route("api/GetJournal/{id}")]
         public IHttpActionResult Get(int id)
         {
@@ -51,6 +65,12 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(journalEntry);
         }
 
+
+        /// <summary>
+        /// Edits specified Journal entry.
+        /// </summary>
+        /// <param name="journal"></param>
+        /// <returns></returns>
         [HttpPut]
         public IHttpActionResult Put(JournalEntryEdit journal)
         {
@@ -65,6 +85,11 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Deletes specified Journal entry.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
