@@ -19,6 +19,11 @@ namespace MacrosTracker.WebAPI.Controllers
             return foodItem;
         }
 
+        /// <summary>
+        /// Returns a list of all FoodItems.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public IHttpActionResult Get()
         {
             FoodItemServices foodItemServices = CreateFoodItemServices();
@@ -26,6 +31,12 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(foodItem);
         }
 
+        /// <summary>
+        /// Creates a new FoodItem.
+        /// </summary>
+        /// <param name="foodItem"></param>
+        /// <returns></returns>
+        [HttpPost]
         public IHttpActionResult Post(FoodItemCreate foodItem)
         {
             if (!ModelState.IsValid)
@@ -39,6 +50,12 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Returns detailed information for the selected FoodItem.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
         public IHttpActionResult Get(int id)
         {
             FoodItemServices foodItemServices = CreateFoodItemServices();
@@ -46,6 +63,12 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(foodItem);
         }
 
+        /// <summary>
+        /// Edit the specified FoodItem.
+        /// </summary>
+        /// <param name="foodItem"></param>
+        /// <returns></returns>
+        [HttpPut]
         public IHttpActionResult Put(FoodItemEdit foodItem)
         {
             if (!ModelState.IsValid)
@@ -59,6 +82,12 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Delete the specified FoodItem.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             var service = CreateFoodItemServices();

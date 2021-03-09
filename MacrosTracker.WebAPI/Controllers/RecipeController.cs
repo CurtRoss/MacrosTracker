@@ -12,13 +12,17 @@ namespace MacrosTracker.WebAPI.Controllers
 {
     public class RecipeController : ApiController
     {
-        public RecipeServices CreateRecipeServices()
+        private RecipeServices CreateRecipeServices()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var recipeServices = new RecipeServices(userId);
             return recipeServices;
         }
 
+        /// <summary>
+        /// Displays all Recipes.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/GetRecipe")]
         public IHttpActionResult Get()
@@ -28,6 +32,11 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(recipes);
         }
 
+        /// <summary>
+        /// Create a new Recipe.
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/Recipe")]
         public IHttpActionResult Post(RecipeCreate recipe)
@@ -43,6 +52,11 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Displays the details of the specified Recipe.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
@@ -51,6 +65,12 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(recipe);
         }
 
+        /// <summary>
+        /// Edit the specified Recipe.
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        [HttpPut]
         public IHttpActionResult Put(RecipeEdit recipe)
         {
             if (!ModelState.IsValid)
@@ -64,6 +84,12 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Delete the specified Recipe.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             var service = CreateRecipeServices();

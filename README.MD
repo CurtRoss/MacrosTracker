@@ -1,6 +1,6 @@
 # Operation Nutrition Ninja
 
-Operation Nutrition Ninja is a final project for Eleven Fifty Academy. The goal was to make a n-tier application using single login users and three custom tables within a database. Operation Nutrition Ninja utilizes a food table, meal table, and a junction table to allow users to track the protein, fat, carbs, and calories in the foods they are consuming.
+Operation Nutrition Ninja is a final project for Eleven Fifty Academy. The goal was to make a n-tier application using single login users and three custom tables within a database. Operation Nutrition Ninja utilizes a food table, meal table, and a junction table to allow users to track the macronutrients (protein, fat, carbs, and calories), also known as macros, in the foods they are consuming.
 
 ## Installation
 To install, please clone or download the repository from [GitHub]( https://github.com/CurtRoss/MacrosTracker).
@@ -10,7 +10,7 @@ To install, please clone or download the repository from [GitHub]( https://githu
 
 Open the repository in Visual Studio Community. An API testing tool will also be required.
 
-Set MacrosTracker.WebAPI as the startup project and run the program. Upon running the application, your internet browser will launch and bring you to the ASP.net landing page. From here, select API in the black menu bar at the top of the page. This will bring you to the ASP.NET Web API Help Page where the endpoints within the program are listed. These endpoints may be used with an API testing tool to use this application.
+Set MacrosTracker.WebAPI as the startup project and run the program. Upon running the application, your internet browser will launch and bring you to the ASP.net landing page. From here, select API in the black menu bar at the top of the page. This will bring you to the Operation Nutrition Ninja Web API Help Page where the endpoints within the program are listed. These endpoints may be used with an API testing tool to use this application.
 
 ### Registration
 

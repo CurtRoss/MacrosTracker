@@ -14,13 +14,19 @@ namespace MacrosTracker.WebAPI.Controllers
     [Authorize]
     public class MealController : ApiController
     {
-        public MealService CreateMealService()
+        private MealService CreateMealService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var mealService = new MealService(userId);
             return mealService;
         }
 
+
+        /// <summary>
+        /// Creates a new Meal.
+        /// </summary>
+        /// <param name="meal"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/Meal")]
         public IHttpActionResult Post(MealCreate meal)
@@ -36,6 +42,10 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Returns all Meals for the logged in user.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/GetMeal")]
         public IHttpActionResult Get()
@@ -45,6 +55,11 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(meals);
         }
 
+        /// <summary>
+        /// Returns the details of the specified meal.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
@@ -53,6 +68,11 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(meal);
         }
 
+        /// <summary>
+        /// Returns Meals for the specified category. Use 0 for Breakfast, 1 for Lunch, 2 for Dinner, 3 for Dessert, or 4 for Snack.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/GetMealCategory/{category}")]
         public IHttpActionResult GetByCategory(TypeofMealCategory category)
@@ -62,6 +82,12 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok(meal);
         }
 
+        /// <summary>
+        /// Edit the specified Meal.
+        /// </summary>
+        /// <param name="meal"></param>
+        /// <returns></returns>
+        [HttpPut]
         public IHttpActionResult Put(MealEdit meal)
         {
             if (!ModelState.IsValid)
@@ -75,6 +101,12 @@ namespace MacrosTracker.WebAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Delete the specified Meal.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             var service = CreateMealService();
